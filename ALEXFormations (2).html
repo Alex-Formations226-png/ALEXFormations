@@ -1,0 +1,2066 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>ALEXFormations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,900;1,9..144,600&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF7F2;
+    --surface:#FFFFFF;
+    --ink:#1C2321;
+    --ink-soft:#5B655F;
+    --line:#E7E1D6;
+
+    --teal:#1F5E52;
+    --teal-dark:#123B33;
+    --teal-soft:#E3EEEA;
+
+    --amber:#E7A33E;
+    --amber-dark:#B87B22;
+    --amber-soft:#FBEDD3;
+
+    --brick:#B54B3A;
+    --brick-dark:#8A3628;
+    --brick-soft:#F5E1DC;
+
+    --slate:#3E5C76;
+    --slate-soft:#E4E9EE;
+
+    --plum:#7C4A6D;
+    --plum-soft:#F0E3EC;
+
+    --radius-lg:26px;
+    --radius-md:18px;
+    --radius-sm:12px;
+    --shadow-card: 0 10px 30px -12px rgba(28,35,33,0.18);
+    --shadow-soft: 0 4px 14px -6px rgba(28,35,33,0.12);
+  }
+
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; padding:0;}
+  body{
+    background: radial-gradient(circle at 50% -10%, #EFE9DD 0%, #DDD4C4 55%, #CBBFA9 100%);
+    min-height:100vh;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Manrope', sans-serif;
+    color:var(--ink);
+    padding:32px 12px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; }
+  }
+
+  .device{
+    width:390px;
+    max-width:100%;
+    height:844px;
+    max-height:92vh;
+    background:var(--paper);
+    border-radius:44px;
+    box-shadow: 0 30px 70px -20px rgba(20,25,23,0.45), 0 0 0 10px #14100c, 0 0 0 12px #2a241d;
+    overflow:hidden;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+  }
+  .notch{
+    position:absolute; top:10px; left:50%; transform:translateX(-50%);
+    width:120px; height:22px; background:#14100c; border-radius:14px; z-index:50;
+  }
+
+  .app{ flex:1; position:relative; overflow:hidden; }
+
+  .screen{
+    position:absolute; inset:0;
+    display:none;
+    flex-direction:column;
+    overflow-y:auto;
+    -ms-overflow-style:none; scrollbar-width:none;
+    background:var(--paper);
+  }
+  .screen::-webkit-scrollbar{display:none;}
+  .screen.active{display:flex;}
+
+  /* ---------- Typography ---------- */
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .num{ font-family:'IBM Plex Mono', monospace; font-weight:600; }
+
+  /* ---------- Logo mark ---------- */
+  .logo-mark{
+    width:56px; height:56px; border-radius:16px;
+    background:linear-gradient(155deg, var(--teal) 0%, var(--teal-dark) 100%);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: var(--shadow-soft);
+    flex-shrink:0;
+  }
+  .logo-mark svg{ width:30px; height:30px; }
+  .logo-mark.sm{ width:38px; height:38px; border-radius:11px; }
+  .logo-mark.sm svg{ width:20px; height:20px; }
+
+  .brand-lockup{ display:flex; align-items:center; gap:10px; }
+  .brand-name{ font-family:'Fraunces', serif; font-weight:600; font-size:17px; }
+  .brand-name b{ font-weight:900; font-style:italic; color:var(--teal); }
+
+  /* ============ SPLASH ============ */
+  #screen-splash{
+    justify-content:space-between;
+    background:
+      radial-gradient(circle at 20% 0%, rgba(231,163,62,0.20), transparent 45%),
+      linear-gradient(190deg, var(--teal-dark) 0%, var(--teal) 55%, #2C7566 100%);
+    color:#fff;
+    padding:26px 28px 34px;
+  }
+  .splash-top{ display:flex; justify-content:flex-end; }
+  .splash-top button{
+    background:rgba(255,255,255,0.14); border:1px solid rgba(255,255,255,0.3);
+    color:#fff; font-family:'Manrope'; font-size:13px; font-weight:600;
+    padding:8px 16px; border-radius:100px; cursor:pointer;
+  }
+  .splash-mid{ text-align:center; }
+  .splash-mid .logo-mark{ margin:0 auto 18px; width:78px; height:78px; border-radius:22px; }
+  .splash-mid .logo-mark svg{ width:42px; height:42px; }
+  .splash-mid .brand-name{ font-size:26px; color:#fff; }
+  .splash-mid .brand-name b{ color:var(--amber); }
+  .splash-mid p{
+    font-size:14px; opacity:0.82; margin-top:6px; line-height:1.5;
+    max-width:260px; margin-left:auto; margin-right:auto;
+  }
+  .path-visual{ display:flex; justify-content:center; gap:10px; margin:34px 0 8px; }
+  .path-visual span{
+    width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,0.35);
+  }
+  .path-visual span:nth-child(2){ background:var(--amber); width:22px; border-radius:6px; }
+  .splash-bottom h1{
+    color:#fff; font-size:28px; line-height:1.15; text-align:center;
+  }
+  .splash-bottom h1 i{ color:var(--amber); font-style:italic; }
+  .splash-bottom h1 u{ color:#EFC9B9; text-decoration:none; font-style:italic; }
+  .cta-primary{
+    margin-top:22px; width:100%; border:none; cursor:pointer;
+    background:var(--amber); color:#20180A;
+    font-family:'Manrope'; font-weight:800; font-size:15px;
+    padding:16px; border-radius:100px;
+    box-shadow:0 10px 24px -8px rgba(231,163,62,0.55);
+  }
+  .cta-ghost{
+    margin-top:10px; width:100%; border:1.5px solid rgba(255,255,255,0.35);
+    background:transparent; color:#fff; font-family:'Manrope'; font-weight:700; font-size:14px;
+    padding:14px; border-radius:100px; cursor:pointer;
+  }
+
+  /* ============ LOGIN ============ */
+  #screen-login{ background:var(--paper); }
+  .login-head{
+    background:linear-gradient(120deg, var(--teal) 0%, var(--teal-dark) 100%);
+    padding:22px 22px 30px; color:#fff; position:relative;
+  }
+  .icon-btn{
+    width:38px; height:38px; border-radius:12px; background:rgba(255,255,255,0.16);
+    border:none; display:flex; align-items:center; justify-content:center; cursor:pointer;
+  }
+  .icon-btn svg{ width:18px; height:18px; stroke:#fff; }
+  .login-head h1{ color:#fff; font-size:22px; margin-top:14px; }
+  .login-head p{ margin:4px 0 0; font-size:13px; opacity:0.82; }
+  .login-body{ padding:26px 24px; flex:1; }
+  .login-logo{ text-align:center; margin-bottom:22px; }
+  .login-logo .logo-mark{ margin:0 auto 10px; }
+  .field{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-md);
+    display:flex; align-items:center; gap:12px; padding:15px 16px; margin-bottom:8px;
+    box-shadow:var(--shadow-soft);
+  }
+  .field svg{ width:18px; height:18px; stroke:var(--teal); flex-shrink:0; }
+  .field input{
+    border:none; outline:none; background:transparent; width:100%;
+    font-family:'Manrope'; font-size:14.5px; color:var(--ink);
+  }
+  .field-hint{ font-size:11.5px; color:var(--ink-soft); margin:2px 4px 16px; }
+  .row-between{ display:flex; justify-content:flex-end; margin:2px 4px 22px; }
+  .link{ color:var(--teal); font-size:13px; font-weight:700; text-decoration:none; cursor:pointer; }
+  .btn-solid{
+    width:100%; border:none; cursor:pointer;
+    background:linear-gradient(120deg, var(--teal) 0%, #2C7566 100%);
+    color:#fff; font-family:'Manrope'; font-weight:800; font-size:15px;
+    padding:16px; border-radius:100px; box-shadow:0 10px 24px -10px rgba(31,94,82,0.55);
+  }
+  .divider{ display:flex; align-items:center; gap:12px; margin:22px 0; color:var(--ink-soft); font-size:12px; }
+  .divider::before,.divider::after{ content:""; flex:1; height:1px; background:var(--line); }
+  .btn-outline{
+    width:100%; border:1.5px solid var(--teal); background:transparent; color:var(--teal);
+    font-family:'Manrope'; font-weight:800; font-size:15px; padding:15px; border-radius:100px; cursor:pointer;
+  }
+
+  /* ============ TOP APP HEADER (main tabs) ============ */
+  .topbar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 22px 16px;
+  }
+  .greet .eyebrow{ margin-bottom:2px; }
+  .greet h2{ font-size:22px; }
+  .avatar{
+    width:44px; height:44px; border-radius:50%;
+    background:linear-gradient(135deg, var(--teal) 0%, var(--slate) 100%);
+    color:#fff; display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces'; font-weight:700; font-size:17px; position:relative;
+  }
+  .avatar::after{
+    content:""; position:absolute; bottom:-1px; right:-1px; width:11px; height:11px;
+    background:var(--teal); border:2px solid var(--paper); border-radius:50%;
+  }
+  .topbar-icons{ display:flex; align-items:center; gap:18px; }
+  .topbar-icons .icon-stack{ text-align:center; }
+  .topbar-icons svg{ width:20px; height:20px; stroke:var(--ink); }
+  .topbar-icons span{ display:block; font-size:9.5px; color:var(--ink-soft); margin-top:3px; }
+
+  .content-scroll{ padding:0 20px 110px; flex:1; }
+
+  /* ---------- Cards ---------- */
+  .card{
+    border-radius:var(--radius-lg); padding:22px; margin-bottom:16px;
+    box-shadow:var(--shadow-card); position:relative; overflow:hidden;
+  }
+  .card-objectif{
+    background:linear-gradient(135deg, var(--brick) 0%, var(--brick-dark) 100%); color:#fff;
+  }
+  .card-objectif .tag{
+    display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.16);
+    padding:6px 12px; border-radius:100px; font-size:12px; font-weight:700; margin-bottom:12px;
+  }
+  .card-objectif h3{ color:#fff; font-size:20px; margin-bottom:14px; }
+  .progress-track{ background:rgba(255,255,255,0.25); height:8px; border-radius:100px; overflow:hidden; }
+  .progress-fill{ height:100%; background:#fff; border-radius:100px; }
+  .card-objectif .meta{ display:flex; justify-content:space-between; margin-top:10px; font-size:12px; font-family:'IBM Plex Mono'; opacity:0.9; }
+
+  .card-premium{
+    background:linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%); color:#241A05;
+    display:flex; align-items:center; justify-content:space-between; gap:14px;
+  }
+  .card-premium h3{ font-size:19px; color:#241A05; margin-bottom:6px; }
+  .card-premium p{ font-size:12.5px; margin:0 0 14px; opacity:0.85; max-width:180px; line-height:1.4; }
+  .card-premium button{
+    background:#20180A; color:var(--amber); border:none; font-weight:800; font-family:'Manrope';
+    font-size:13px; padding:10px 18px; border-radius:100px; cursor:pointer;
+  }
+  .premium-icon{
+    width:64px; height:64px; border-radius:50%; background:rgba(255,255,255,0.35);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .premium-icon svg{ width:30px; height:30px; }
+
+  .card-session{
+    background:linear-gradient(120deg, var(--teal) 0%, var(--teal-dark) 100%); color:#fff;
+    display:flex; align-items:center; gap:16px; cursor:pointer;
+  }
+  .card-session .ic{
+    width:52px; height:52px; border-radius:16px; background:rgba(255,255,255,0.16);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .card-session .ic svg{ width:26px; height:26px; }
+  .card-session h3{ color:#fff; font-size:17px; }
+  .card-session p{ margin:3px 0 0; font-size:12.5px; opacity:0.85; }
+  .chev{ margin-left:auto; width:18px; height:18px; stroke:#fff; opacity:0.8; }
+
+  .section-title{ display:flex; align-items:center; gap:10px; margin:26px 0 14px; }
+  .section-title .ic-sq{
+    width:30px; height:30px; border-radius:9px; background:var(--teal-soft);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .section-title .ic-sq svg{ width:16px; height:16px; stroke:var(--teal); }
+  .section-title h3{ font-size:17px; }
+
+  /* Category grid */
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .cat-card{
+    border-radius:var(--radius-md); padding:16px; cursor:pointer; position:relative;
+    border:1px solid var(--line); background:var(--surface);
+    box-shadow:var(--shadow-soft); transition:transform .15s ease;
+  }
+  .cat-card:active{ transform:scale(0.97); }
+  .cat-edit{
+    position:absolute; top:10px; right:10px; width:26px; height:26px; border-radius:8px;
+    background:var(--paper); border:1px solid var(--line); display:flex; align-items:center; justify-content:center;
+    cursor:pointer; color:var(--ink-soft);
+  }
+  .cat-edit svg{ width:13px; height:13px; }
+  .cat-card.cat-add{
+    display:flex; flex-direction:column; align-items:flex-start; justify-content:center;
+    border:1.5px dashed var(--line); background:transparent; box-shadow:none; min-height:132px;
+  }
+  .cat-add-ic{
+    width:38px; height:38px; border-radius:11px; background:var(--teal-soft); display:flex; align-items:center; justify-content:center; margin-bottom:12px;
+  }
+  .cat-add-ic svg{ width:18px; height:18px; stroke:var(--teal); }
+  .cat-add h4{ color:var(--teal); }
+  .cat-ic{
+    width:38px; height:38px; border-radius:11px; display:flex; align-items:center; justify-content:center; margin-bottom:12px;
+  }
+  .cat-ic svg{ width:19px; height:19px; stroke:#fff; }
+  .cat-card h4{ font-family:'Manrope'; font-size:14.5px; font-weight:800; margin:0 0 4px; }
+  .cat-card p{ font-family:'Manrope'; font-size:11.5px; color:var(--ink-soft); margin:0; line-height:1.4; }
+
+  /* Formation list card */
+  .form-card{
+    display:flex; gap:14px; background:var(--surface); border:1px solid var(--line);
+    border-radius:var(--radius-md); padding:14px; margin-bottom:12px; cursor:pointer;
+    box-shadow:var(--shadow-soft);
+  }
+  .form-thumb{
+    width:64px; height:64px; border-radius:14px; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .form-thumb svg{ width:28px; height:28px; stroke:#fff; }
+  .form-info{ flex:1; min-width:0; }
+  .form-info h4{ font-family:'Manrope'; font-weight:800; font-size:14.5px; margin:0 0 3px; }
+  .form-info .by{ font-size:11.5px; color:var(--ink-soft); margin-bottom:6px; }
+  .form-meta{ display:flex; gap:10px; font-size:11px; color:var(--ink-soft); align-items:center; flex-wrap:wrap; }
+  .form-meta .dot{ width:3px; height:3px; border-radius:50%; background:var(--ink-soft); }
+  .badge-free{ background:var(--teal-soft); color:var(--teal); font-weight:800; font-size:10.5px; padding:2px 8px; border-radius:100px; }
+  .badge-level{ background:var(--slate-soft); color:var(--slate); font-weight:700; font-size:10.5px; padding:2px 8px; border-radius:100px; }
+  .mini-progress{ margin-top:8px; height:5px; background:var(--line); border-radius:100px; overflow:hidden; }
+  .mini-progress i{ display:block; height:100%; background:var(--teal); }
+
+  /* Bottom nav */
+  .navbar{
+    display:flex; border-top:1px solid var(--line); background:var(--surface);
+    padding:10px 6px calc(env(safe-area-inset-bottom, 0px) + 10px);
+  }
+  .nav-btn{
+    flex:1; display:flex; flex-direction:column; align-items:center; gap:4px;
+    background:none; border:none; cursor:pointer; color:var(--ink-soft); font-family:'Manrope'; font-size:10.5px; font-weight:700;
+  }
+  .nav-btn svg{ width:21px; height:21px; stroke:var(--ink-soft); }
+  .nav-btn.active{ color:var(--teal); }
+  .nav-btn.active svg{ stroke:var(--teal); }
+
+  /* Detail / secondary screens with back header */
+  .sub-header{
+    padding:20px 20px 24px; color:#fff; position:relative; flex-shrink:0;
+  }
+  .sub-header .top-row{ display:flex; align-items:center; gap:12px; margin-bottom:16px; }
+  .sub-header h1{ color:#fff; font-size:21px; line-height:1.2; }
+  .sub-header p{ margin:5px 0 0; font-size:12.5px; opacity:0.85; max-width:260px; line-height:1.4; }
+  .sub-header .hero-ic{
+    width:48px; height:48px; border-radius:14px; background:rgba(255,255,255,0.18);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .sub-header .hero-ic svg{ width:24px; height:24px; }
+
+  .stat-row{
+    display:flex; justify-content:space-around; background:var(--surface); margin:-18px 20px 0;
+    border-radius:var(--radius-md); padding:18px 8px; box-shadow:var(--shadow-card); position:relative; z-index:5;
+  }
+  .stat-row .stat{ text-align:center; }
+  .stat-row .stat .num{ font-size:20px; color:var(--ink); display:block; }
+  .stat-row .stat span{ font-size:10.5px; color:var(--ink-soft); }
+
+  .body-pad{ padding:26px 20px 110px; }
+
+  /* Learning path (signature element) */
+  .path-wrap{ position:relative; padding:6px 0 6px 6px; }
+  .path-line{ position:absolute; left:29px; top:20px; bottom:20px; width:3px; background:var(--line); border-radius:3px; z-index:0; }
+  .path-line i{ display:block; width:100%; background:var(--teal); border-radius:3px; }
+  .module-row{ position:relative; display:flex; gap:16px; padding:14px 0; z-index:1; cursor:pointer; }
+  .module-row:active{ opacity:0.8; }
+  .module-dot{
+    width:32px; height:32px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center;
+    border:3px solid var(--paper); font-family:'IBM Plex Mono'; font-size:12px; font-weight:600;
+  }
+  .module-dot.done{ background:var(--teal); color:#fff; }
+  .module-dot.current{ background:var(--amber); color:#241A05; box-shadow:0 0 0 5px var(--amber-soft); }
+  .module-dot.open{ background:var(--surface); color:var(--ink); border-color:var(--teal); }
+  .module-body{ flex:1; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-sm); padding:12px 14px; }
+  .module-body h5{ font-family:'Manrope'; font-size:13.5px; font-weight:800; margin:0 0 3px; }
+  .module-body p{ margin:0; font-size:11.5px; color:var(--ink-soft); }
+
+  .sticky-cta{ position:sticky; bottom:0; padding:16px 20px calc(env(safe-area-inset-bottom,0px) + 16px); background:linear-gradient(0deg, var(--paper) 60%, rgba(250,247,242,0)); }
+
+  /* Mes formations */
+  .tabs-pill{ display:flex; background:var(--teal-soft); border-radius:100px; padding:4px; margin:0 20px 18px; }
+  .tabs-pill button{
+    flex:1; border:none; background:none; padding:10px; border-radius:100px; font-family:'Manrope'; font-weight:700; font-size:12.5px; color:var(--teal); cursor:pointer;
+  }
+  .tabs-pill button.active{ background:var(--teal); color:#fff; }
+
+  .cert-tag{ display:flex; align-items:center; gap:6px; color:var(--amber-dark); font-size:11px; font-weight:800; margin-top:8px; }
+  .cert-tag svg{ width:13px; height:13px; stroke:var(--amber-dark); }
+
+  /* Profil */
+  .profile-head{ text-align:center; padding:30px 20px 20px; }
+  .profile-head .avatar{ width:76px; height:76px; font-size:26px; margin:0 auto 12px; }
+  .profile-head h2{ font-size:19px; }
+  .profile-head p{ margin:3px 0 0; font-size:12.5px; color:var(--ink-soft); }
+  .stat-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; padding:0 20px 6px; }
+  .stat-tile{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-md); padding:16px; box-shadow:var(--shadow-soft); }
+  .stat-tile .num{ font-size:22px; }
+  .stat-tile span{ font-size:11px; color:var(--ink-soft); }
+  .stat-tile svg{ width:18px; height:18px; margin-bottom:8px; }
+  .list-item{
+    display:flex; align-items:center; gap:14px; padding:15px 20px; border-bottom:1px solid var(--line); cursor:pointer;
+  }
+  .list-item .ic-sq{ width:34px; height:34px; border-radius:10px; background:var(--teal-soft); display:flex; align-items:center; justify-content:center; }
+  .list-item .ic-sq svg{ width:17px; height:17px; stroke:var(--teal); }
+  .list-item span{ flex:1; font-family:'Manrope'; font-weight:700; font-size:14px; }
+  .list-item svg.chev-r{ width:16px; height:16px; stroke:var(--ink-soft); }
+  .list-item.danger span{ color:var(--brick); }
+  .list-item.danger .ic-sq{ background:var(--brick-soft); }
+  .list-item.danger .ic-sq svg{ stroke:var(--brick); }
+
+  /* Modal */
+  .modal-backdrop{
+    position:absolute; inset:0; background:rgba(20,25,23,0.5); z-index:200;
+    display:none; align-items:flex-end; justify-content:center;
+  }
+  .modal-backdrop.open{ display:flex; }
+  .modal-sheet{
+    width:100%; max-height:88%; overflow-y:auto; background:var(--surface);
+    border-radius:26px 26px 0 0; padding:22px 22px calc(env(safe-area-inset-bottom,0px) + 22px);
+    box-shadow:0 -10px 40px rgba(0,0,0,0.25);
+  }
+  .modal-sheet h3{ font-size:19px; margin-bottom:16px; }
+  .modal-label{ font-size:12px; font-weight:700; color:var(--ink-soft); margin:14px 2px 6px; }
+  .modal-label:first-of-type{ margin-top:0; }
+  .swatch-row{ display:flex; gap:10px; margin:2px 0; }
+  .swatch{
+    width:34px; height:34px; border-radius:50%; cursor:pointer; border:3px solid transparent;
+  }
+  .swatch.selected{ border-color:var(--ink); }
+  .icon-pick-row{ display:flex; flex-wrap:wrap; gap:8px; margin:2px 0; }
+  .icon-pick{
+    width:40px; height:40px; border-radius:11px; background:var(--teal); display:flex; align-items:center; justify-content:center;
+    cursor:pointer; border:2.5px solid transparent; opacity:0.55;
+  }
+  .icon-pick.selected{ opacity:1; border-color:var(--ink); }
+  .icon-pick svg{ width:18px; height:18px; }
+  select.field-select{
+    width:100%; border:1px solid var(--line); border-radius:var(--radius-sm); padding:13px 14px;
+    font-family:'Manrope'; font-size:14px; background:var(--surface); color:var(--ink); margin-bottom:4px;
+  }
+  textarea.field-textarea{
+    width:100%; border:1px solid var(--line); border-radius:var(--radius-sm); padding:13px 14px;
+    font-family:'Manrope'; font-size:13.5px; color:var(--ink); resize:none; min-height:70px;
+  }
+  .modal-actions{ display:flex; gap:10px; margin-top:20px; }
+  .modal-actions .btn-outline, .modal-actions .btn-solid{ margin:0; }
+  .link-danger{
+    display:block; text-align:center; width:100%; background:none; border:none; color:var(--brick);
+    font-family:'Manrope'; font-weight:700; font-size:13px; margin-top:14px; cursor:pointer;
+  }
+  .add-formation-btn{
+    display:flex; align-items:center; justify-content:center; gap:8px; width:100%;
+    border:1.5px dashed var(--line); background:transparent; color:var(--teal);
+    font-family:'Manrope'; font-weight:800; font-size:13.5px; padding:14px; border-radius:var(--radius-md);
+    cursor:pointer; margin-top:4px;
+  }
+  .add-formation-btn svg{ width:16px; height:16px; stroke:var(--teal); }
+  .checkbox-row{ display:flex; align-items:center; gap:10px; margin:14px 2px; }
+  .checkbox-row input{ width:18px; height:18px; accent-color:var(--teal); }
+  .checkbox-row label{ font-size:13.5px; font-family:'Manrope'; font-weight:600; }
+
+  /* QCM */
+  .level-row{
+    display:flex; align-items:center; gap:14px; background:var(--surface); border:1px solid var(--line);
+    border-radius:var(--radius-md); padding:14px 16px; margin-bottom:12px; box-shadow:var(--shadow-soft); cursor:pointer;
+  }
+  .level-emoji{
+    width:46px; height:46px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0;
+  }
+  .level-row .info{ flex:1; }
+  .level-row h4{ font-family:'Manrope'; font-weight:800; font-size:14.5px; margin:0 0 2px; }
+  .level-row p{ margin:0; font-size:11.5px; color:var(--ink-soft); }
+  .level-play{
+    width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; border:none; cursor:pointer;
+  }
+  .level-play svg{ width:15px; height:15px; }
+  .tip-box{
+    display:flex; gap:12px; background:var(--amber-soft); border-radius:var(--radius-md); padding:16px; margin-top:8px; align-items:flex-start;
+  }
+  .tip-box svg{ width:20px; height:20px; stroke:var(--amber-dark); flex-shrink:0; margin-top:1px; }
+  .tip-box b{ color:var(--amber-dark); display:block; font-size:12.5px; margin-bottom:3px; }
+  .tip-box span{ font-size:12px; color:var(--ink-soft); line-height:1.5; }
+
+  /* Quiz */
+  .quiz-question-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-md);
+    padding:18px; margin-bottom:16px; box-shadow:var(--shadow-soft);
+  }
+  .quiz-question-card h4{ font-family:'Manrope'; font-weight:800; font-size:14.5px; margin:6px 0 14px; line-height:1.4; }
+  .qz-option{
+    display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:var(--radius-sm);
+    border:1.5px solid var(--line); margin-bottom:9px; cursor:pointer; transition:border-color .15s ease;
+  }
+  .qz-option .dot{
+    width:18px; height:18px; border-radius:50%; border:2px solid var(--line); flex-shrink:0; position:relative;
+  }
+  .qz-option.selected{ border-color:var(--teal); background:var(--teal-soft); }
+  .qz-option.selected .dot{ border-color:var(--teal); }
+  .qz-option.selected .dot::after{
+    content:""; position:absolute; inset:3px; border-radius:50%; background:var(--teal);
+  }
+  .qz-option span{ font-family:'Manrope'; font-size:13.5px; }
+  .qz-option.correct{ border-color:var(--teal); background:var(--teal-soft); }
+  .qz-option.correct .dot{ border-color:var(--teal); background:var(--teal); }
+  .qz-option.incorrect{ border-color:var(--brick); background:var(--brick-soft); }
+  .qz-option.incorrect .dot{ border-color:var(--brick); background:var(--brick); }
+  .qz-option.disabled{ cursor:default; }
+  .qz-explication{
+    display:flex; gap:10px; background:var(--amber-soft); border-radius:var(--radius-sm); padding:12px 14px; margin-top:6px;
+  }
+  .qz-explication svg{ width:16px; height:16px; stroke:var(--amber-dark); flex-shrink:0; margin-top:1px; }
+  .qz-explication span{ font-size:12px; color:var(--ink-soft); line-height:1.5; }
+  .quiz-score-banner{
+    border-radius:var(--radius-md); padding:20px; text-align:center; margin-bottom:6px;
+    background:linear-gradient(120deg, var(--teal) 0%, var(--teal-dark) 100%); color:#fff;
+  }
+  .quiz-score-banner .num{ font-size:32px; display:block; }
+  .quiz-score-banner p{ margin:4px 0 0; font-size:12.5px; opacity:0.85; }
+  .eyebrow-q{ font-family:'IBM Plex Mono'; font-size:10.5px; color:var(--ink-soft); letter-spacing:0.05em; text-transform:uppercase; }
+
+  /* Leçon */
+  .lesson-text p{ font-size:14px; line-height:1.75; color:var(--ink); margin:0 0 16px; }
+  .lesson-done-badge{
+    display:inline-flex; align-items:center; gap:8px; background:var(--teal-soft); color:var(--teal);
+    font-family:'Manrope'; font-weight:800; font-size:12.5px; padding:8px 14px; border-radius:100px; margin-bottom:18px;
+  }
+  .lesson-done-badge svg{ width:14px; height:14px; stroke:var(--teal); }
+  .lesson-nav-row{ display:flex; gap:10px; margin-top:6px; }
+  .lesson-nav-row button{ flex:1; }
+</style>
+</head>
+<body>
+
+<div class="device">
+  <div class="notch"></div>
+  <div class="app">
+
+    <!-- ============ SPLASH ============ -->
+    <section class="screen active" id="screen-splash">
+      <div class="splash-top"><button onclick="go('login')">Passer</button></div>
+      <div class="splash-mid">
+        <div class="logo-mark">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M3 8L12 4l9 4-9 4-9-4Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/><path d="M7 10.5V15c0 1.4 2.2 2.5 5 2.5s5-1.1 5-2.5v-4.5" stroke="#fff" stroke-width="1.6"/><path d="M20 8v5" stroke="#E7A33E" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <div class="brand-name">ALEX<b>Formations</b></div>
+        <p>Des parcours courts et concrets pour apprendre un vrai métier, à votre rythme.</p>
+        <div class="path-visual"><span></span><span></span><span></span><span></span></div>
+      </div>
+      <div class="splash-bottom">
+        <h1>Apprenez <i>aujourd'hui</i>,<br>progressez <u>chaque jour</u>.</h1>
+        <button class="cta-primary" onclick="go('login')">Commencer</button>
+        <button class="cta-ghost" onclick="go('login')">J'ai déjà un compte</button>
+      </div>
+    </section>
+
+    <!-- ============ LOGIN ============ -->
+    <section class="screen" id="screen-login">
+      <div class="login-head">
+        <button class="icon-btn" onclick="go('splash')">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <h1>Connexion</h1>
+        <p>Reprenez votre formation là où vous l'avez laissée</p>
+      </div>
+      <div class="login-body">
+        <div class="login-logo">
+          <div class="logo-mark sm">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M3 8L12 4l9 4-9 4-9-4Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+        <div class="field">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.35 1.79.68 2.63a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.45-1.45a2 2 0 0 1 2.11-.45c.84.33 1.73.56 2.63.68A2 2 0 0 1 22 16.92Z" stroke="currentColor" stroke-width="1.6"/></svg>
+          <input type="tel" placeholder="Numéro de téléphone">
+        </div>
+        <p class="field-hint">Format : 8 chiffres (sans le +226)</p>
+        <div class="field">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="10" width="16" height="10" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.6"/></svg>
+          <input type="password" placeholder="Mot de passe">
+        </div>
+        <div class="row-between"><a class="link">Mot de passe oublié ?</a></div>
+        <button class="btn-solid" onclick="go('home')">Se connecter</button>
+        <div class="divider">OU</div>
+        <button class="btn-outline" onclick="go('home')">Créer un compte</button>
+      </div>
+    </section>
+
+    <!-- ============ HOME ============ -->
+    <section class="screen" id="screen-home">
+      <div class="topbar">
+        <div class="greet">
+          <div class="eyebrow" id="greetTime">Bonsoir</div>
+          <h2>Alex</h2>
+        </div>
+        <div class="topbar-icons">
+          <div class="icon-stack" onclick="openDownloads()" style="cursor:pointer;"><svg viewBox="0 0 24 24" fill="none"><path d="M12 16V8m0 0l-3.5 3.5M12 8l3.5 3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 20h12a4 4 0 0 0 .5-7.97A5.5 5.5 0 0 0 8 8.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span id="offlineCount">Hors ligne</span></div>
+          <div class="icon-stack"><svg viewBox="0 0 24 24" fill="none"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M13.7 21a2 2 0 0 1-3.4 0" stroke="currentColor" stroke-width="1.7"/></svg><span>Alertes</span></div>
+        </div>
+      </div>
+
+      <div class="content-scroll">
+        <div class="card card-objectif">
+          <span class="tag">🚩 Mon Parcours</span>
+          <h3>Algèbre &amp; Analyse — Terminale</h3>
+          <div class="progress-track"><div class="progress-fill" style="width:30%"></div></div>
+          <div class="meta"><span>30% terminé</span><span>15 min / jour</span></div>
+        </div>
+
+        <div class="card card-premium">
+          <div>
+            <h3>Accès complet</h3>
+            <p>Toutes les fonctionnalités sont débloquées : formations, QCM et outils d'administration</p>
+            <button onclick="switchTab('profil')">Voir le profil</button>
+          </div>
+          <div class="premium-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="#20180A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="#20180A" stroke-width="1.6"/></svg></div>
+        </div>
+
+        <div class="card card-session" onclick="go('mescours')">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3.5v6c0 5-3 7.5-7 8.5-4-1-7-3.5-7-8.5v-6L12 3Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="#E7A33E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div>
+            <h3>Session Express</h3>
+            <p>15 min pour avancer votre module du jour</p>
+          </div>
+          <svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+        <div class="section-title">
+          <div class="ic-sq"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.6"/></svg></div>
+          <h3>Catégories</h3>
+        </div>
+        <div class="grid-2" id="homeCategories"></div>
+      </div>
+
+      <nav class="navbar" data-nav="home">
+        <button class="nav-btn active" data-tab="home" onclick="switchTab('home')">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M3 11l9-7 9 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          Accueil
+        </button>
+        <button class="nav-btn" data-tab="formations" onclick="switchTab('formations')">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="8" height="8" rx="1.6" stroke="currentColor" stroke-width="1.7"/><rect x="13" y="4" width="8" height="8" rx="1.6" stroke="currentColor" stroke-width="1.7"/><rect x="3" y="14" width="8" height="8" rx="1.6" stroke="currentColor" stroke-width="1.7"/><rect x="13" y="14" width="8" height="8" rx="1.6" stroke="currentColor" stroke-width="1.7"/></svg>
+          Formations
+        </button>
+        <button class="nav-btn" data-tab="mescours" onclick="switchTab('mescours')">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 19V6a2 2 0 0 1 2-2h9l5 5v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12h6M9 16h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          Mes cours
+        </button>
+        <button class="nav-btn" data-tab="profil" onclick="switchTab('profil')">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.7"/><path d="M4.5 20c1.4-3.6 4.4-5.5 7.5-5.5S18.1 16.4 19.5 20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          Profil
+        </button>
+      </nav>
+    </section>
+
+    <!-- ============ FORMATIONS (catégories) ============ -->
+    <section class="screen" id="screen-formations">
+      <div class="topbar">
+        <div class="greet"><div class="eyebrow">Catalogue</div><h2>Formations</h2></div>
+      </div>
+      <div class="content-scroll">
+        <div class="grid-2" id="allCategories"></div>
+      </div>
+      <nav class="navbar">
+        <button class="nav-btn" data-tab="home" onclick="switchTab('home')"><svg viewBox="0 0 24 24" fill="none"><path d="M3 11l9-7 9 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Accueil</button>
+        <button class="nav-btn active" data-tab="formations" onclick="switchTab('formations')"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="8" height="8" rx="1.6" stroke="currentColor" stroke-width="1.7"/><rect x="13" y="4" width="8" height="8" rx="1.6" stroke="currentColor" stroke-width="1.7"/><rect x="3" y="14" width="8" height="8" rx="1.6" stroke="currentColor" stroke-width="1.7"/><rect x="13" y="14" width="8" height="8" rx="1.6" stroke="currentColor" stroke-width="1.7"/></svg>Formations</button>
+        <button class="nav-btn" data-tab="mescours" onclick="switchTab('mescours')"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19V6a2 2 0 0 1 2-2h9l5 5v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12h6M9 16h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>Mes cours</button>
+        <button class="nav-btn" data-tab="profil" onclick="switchTab('profil')"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.7"/><path d="M4.5 20c1.4-3.6 4.4-5.5 7.5-5.5S18.1 16.4 19.5 20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>Profil</button>
+      </nav>
+    </section>
+
+    <!-- ============ CATEGORY DETAIL (liste des formations) ============ -->
+    <section class="screen" id="screen-category">
+      <div class="sub-header" id="categoryHeader"></div>
+      <div class="body-pad" id="categoryList"></div>
+    </section>
+
+    <!-- ============ FORMATION DETAIL ============ -->
+    <section class="screen" id="screen-detail">
+      <div class="sub-header" id="detailHeader"></div>
+      <div class="stat-row" id="detailStats"></div>
+      <div class="body-pad">
+        <p id="detailDesc" style="font-size:13.5px; line-height:1.6; color:var(--ink-soft); margin:20px 0 24px;"></p>
+        <div class="section-title" style="margin-top:0;">
+          <div class="ic-sq"><svg viewBox="0 0 24 24" fill="none"><path d="M3 8L12 4l9 4-9 4-9-4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+          <h3>Programme</h3>
+        </div>
+        <div class="path-wrap" id="detailModules"></div>
+      </div>
+      <div class="sticky-cta"><button class="btn-solid" id="detailCta">Continuer la formation</button></div>
+    </section>
+
+    <!-- ============ LEÇON (contenu d'un module) ============ -->
+    <section class="screen" id="screen-lesson">
+      <div class="sub-header" id="lessonHeader"></div>
+      <div class="body-pad" id="lessonBody"></div>
+      <div class="sticky-cta" id="lessonFooter"></div>
+    </section>
+
+    <!-- ============ TÉLÉCHARGEMENTS HORS LIGNE ============ -->
+    <section class="screen" id="screen-downloads">
+      <div class="sub-header" style="background:linear-gradient(120deg, var(--teal) 0%, var(--ink) 140%);">
+        <div class="top-row">
+          <button class="icon-btn" onclick="switchTab(lastTab)"><svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="hero-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 16V8m0 0l-3.5 3.5M12 8l3.5 3.5" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 20h12a4 4 0 0 0 .5-7.97A5.5 5.5 0 0 0 8 8.5" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+        </div>
+        <h1>Téléchargements hors ligne</h1>
+        <p>Retrouvez ici les formations enregistrées pour les consulter sans connexion.</p>
+      </div>
+      <div class="body-pad" id="downloadsList"></div>
+    </section>
+
+    <!-- ============ QCM (quiz par difficulté) ============ -->
+    <section class="screen" id="screen-qcm">
+      <div class="sub-header" id="qcmHeader"></div>
+      <div class="stat-row" id="qcmStats"></div>
+      <div class="body-pad">
+        <h3 style="font-size:16px; margin:22px 0 14px;">Choisir la difficulté</h3>
+        <div id="qcmLevels"></div>
+        <div class="tip-box" id="qcmTip"></div>
+      </div>
+    </section>
+
+    <!-- ============ QUIZ (passage des questions) ============ -->
+    <section class="screen" id="screen-quiz">
+      <div class="sub-header" id="quizHeader"></div>
+      <div class="body-pad" id="quizScore"></div>
+      <div class="body-pad" style="padding-top:0;" id="quizQuestions"></div>
+      <div class="sticky-cta" id="quizFooter"></div>
+    </section>
+
+    <!-- ============ MES FORMATIONS ============ -->
+    <section class="screen" id="screen-mescours">
+      <div class="topbar">
+        <div class="greet"><div class="eyebrow">Mon apprentissage</div><h2>Mes formations</h2></div>
+      </div>
+      <div class="tabs-pill">
+        <button class="active" id="tabToutes" onclick="setMesCoursTab('toutes')">Toutes</button>
+        <button id="tabEnCours" onclick="setMesCoursTab('cours')">En cours</button>
+        <button id="tabTerminees" onclick="setMesCoursTab('terminees')">Terminées</button>
+      </div>
+      <div class="content-scroll" id="mesFormationsList"></div>
+      <nav class="navbar">
+        <button class="nav-btn" data-tab="home" onclick="switchTab('home')"><svg viewBox="0 0 24 24" fill="none"><path d="M3 11l9-7 9 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Accueil</button>
+        <button class="nav-btn" data-tab="formations" onclick="switchTab('formations')"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="8" height="8" rx="1.6" stroke="currentColor" stroke-width="1.7"/><rect x="13" y="4" width="8" height="8" rx="1.6" stroke="currentColor" stroke-width="1.7"/><rect x="3" y="14" width="8" height="8" rx="1.6" stroke="currentColor" stroke-width="1.7"/><rect x="13" y="14" width="8" height="8" rx="1.6" stroke="currentColor" stroke-width="1.7"/></svg>Formations</button>
+        <button class="nav-btn active" data-tab="mescours" onclick="switchTab('mescours')"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19V6a2 2 0 0 1 2-2h9l5 5v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12h6M9 16h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>Mes cours</button>
+        <button class="nav-btn" data-tab="profil" onclick="switchTab('profil')"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.7"/><path d="M4.5 20c1.4-3.6 4.4-5.5 7.5-5.5S18.1 16.4 19.5 20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>Profil</button>
+      </nav>
+    </section>
+
+    <!-- ============ PROFIL ============ -->
+    <section class="screen" id="screen-profil">
+      <div class="content-scroll" style="padding-top:0;">
+        <div class="profile-head">
+          <div class="avatar">A</div>
+          <h2>Alex</h2>
+          <p>Créateur &amp; administrateur de l'application</p>
+        </div>
+        <div class="stat-grid">
+          <div class="stat-tile"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19V6a2 2 0 0 1 2-2h9l5 5v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z" stroke="var(--teal)" stroke-width="1.7" stroke-linejoin="round"/></svg><span class="num" style="display:block;">7</span><span>Formations suivies</span></div>
+          <div class="stat-tile"><svg viewBox="0 0 24 24" fill="none"><path d="M12 7v5l3 2" stroke="var(--teal)" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="var(--teal)" stroke-width="1.7"/></svg><span class="num" style="display:block;">38h</span><span>Temps total</span></div>
+          <div class="stat-tile"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 6.6L21 10l-5.5 4.3L17 21l-5-3.6L7 21l1.5-6.7L3 10l6.6-1.4L12 2Z" stroke="var(--amber-dark)" stroke-width="1.6" stroke-linejoin="round"/></svg><span class="num" style="display:block;">3</span><span>Certificats</span></div>
+          <div class="stat-tile"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3s6 5.5 6 10a6 6 0 1 1-12 0c0-4.5 6-10 6-10Z" stroke="var(--brick)" stroke-width="1.7" stroke-linejoin="round"/></svg><span class="num" style="display:block;">12</span><span>Jours de série</span></div>
+        </div>
+      </div>
+      <div style="margin-top:8px;">
+        <div class="list-item" id="adminListItem" onclick="openAdminModal()"></div>
+        <div class="list-item"><div class="ic-sq"><svg viewBox="0 0 24 24" fill="none"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" stroke="var(--teal)" stroke-width="1.7" stroke-linejoin="round"/></svg></div><span>Notifications</span><svg class="chev-r" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <div class="list-item" onclick="openDownloads()"><div class="ic-sq"><svg viewBox="0 0 24 24" fill="none"><path d="M12 16V8m0 0l-3.5 3.5M12 8l3.5 3.5" stroke="var(--teal)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Téléchargements hors-ligne</span><svg class="chev-r" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <div class="list-item"><div class="ic-sq"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="var(--teal)" stroke-width="1.7"/><path d="M12 16v.01M12 8a2 2 0 1 1 2 2c-.9.3-2 1-2 2" stroke="var(--teal)" stroke-width="1.7" stroke-linecap="round"/></svg></div><span>Aide &amp; support</span><svg class="chev-r" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+        <div class="list-item danger" onclick="go('splash')"><div class="ic-sq"><svg viewBox="0 0 24 24" fill="none"><path d="M15 17l5-5-5-5M20 12H9" stroke="var(--brick)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 19H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h3" stroke="var(--brick)" stroke-width="1.7" stroke-linecap="round"/></svg></div><span>Déconnexion</span></div>
+      </div>
+      <nav class="navbar" style="margin-top:10px;">
+        <button class="nav-btn" data-tab="home" onclick="switchTab('home')"><svg viewBox="0 0 24 24" fill="none"><path d="M3 11l9-7 9 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Accueil</button>
+        <button class="nav-btn" data-tab="formations" onclick="switchTab('formations')"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="8" height="8" rx="1.6" stroke="currentColor" stroke-width="1.7"/><rect x="13" y="4" width="8" height="8" rx="1.6" stroke="currentColor" stroke-width="1.7"/><rect x="3" y="14" width="8" height="8" rx="1.6" stroke="currentColor" stroke-width="1.7"/><rect x="13" y="14" width="8" height="8" rx="1.6" stroke="currentColor" stroke-width="1.7"/></svg>Formations</button>
+        <button class="nav-btn" data-tab="mescours" onclick="switchTab('mescours')"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19V6a2 2 0 0 1 2-2h9l5 5v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12h6M9 16h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>Mes cours</button>
+        <button class="nav-btn active" data-tab="profil" onclick="switchTab('profil')"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.7"/><path d="M4.5 20c1.4-3.6 4.4-5.5 7.5-5.5S18.1 16.4 19.5 20" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>Profil</button>
+      </nav>
+    </section>
+
+  </div>
+
+  <div class="modal-backdrop" id="modalBackdrop" onclick="if(event.target===this) closeModal()">
+    <div class="modal-sheet" id="modalSheet"></div>
+  </div>
+</div>
+
+<script>
+/* ---------------- Icônes par catégorie ---------------- */
+const ICONS = {
+  maths: '<path d="M5 4h14v4l-5 5 5 5v4H5v-4l5-5-5-5V4Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/>',
+  francais: '<path d="M6 4h9l3 3v13H6V4Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 10h6M9 14h6M9 18h3" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>',
+  histgeo: '<circle cx="12" cy="12" r="8.5" stroke="#fff" stroke-width="1.6"/><path d="M3.5 12h17M12 3.5c2.5 2.4 3.8 5.4 3.8 8.5s-1.3 6.1-3.8 8.5c-2.5-2.4-3.8-5.4-3.8-8.5S9.5 5.9 12 3.5Z" stroke="#fff" stroke-width="1.4"/>',
+  philo: '<circle cx="12" cy="10" r="5" stroke="#fff" stroke-width="1.6"/><path d="M9 10a3 3 0 0 1 3-3M6 21c0-3 2.5-5 6-5s6 2 6 5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>',
+  pc: '<path d="M10 3h4M11 3v6.5L6.5 18a2 2 0 0 0 1.8 3h7.4a2 2 0 0 0 1.8-3L13 9.5V3" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/><path d="M8.5 15h7" stroke="#fff" stroke-width="1.6"/>',
+  eco: '<path d="M4 19h16M6 19v-6M11 19V8M16 19v-9M20 6l-6 5-3-2-5 4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>',
+  droit: '<path d="M12 3v18M8 21h8M5 7h14M5 7l3.5 6a3.5 3.5 0 0 1-7 0L5 7ZM19 7l3.5 6a3.5 3.5 0 0 1-7 0L19 7Z" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>',
+  culture: '<circle cx="12" cy="12" r="9" stroke="#fff" stroke-width="1.6"/><path d="M9.3 9.6a2.7 2.7 0 0 1 5.2.9c0 1.8-2.5 1.9-2.5 3.8" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="17.2" r="0.9" fill="#fff"/>',
+  actu: '<rect x="3.5" y="5" width="14" height="15" rx="1.6" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/><path d="M20.5 8.5V18a2 2 0 0 1-2 2" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/><path d="M6.5 9h8M6.5 12.5h8M6.5 16h5" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/>',
+  code: '<path d="M8 9l-4 3 4 3M16 9l4 3-4 3M13.5 6l-3 12" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>',
+  design: '<circle cx="12" cy="12" r="8" stroke="#fff" stroke-width="1.7"/><path d="M12 4a4 4 0 0 0 0 8 4 4 0 0 1 0 8" stroke="#fff" stroke-width="1.7"/>',
+  bureau: '<rect x="4" y="5" width="16" height="12" rx="1.6" stroke="#fff" stroke-width="1.7"/><path d="M8 21h8M12 17v4" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/>',
+  etoile: '<path d="M12 3l2.4 6.6L21 10l-5.5 4.3L17 21l-5-3.6L7 21l1.5-6.7L3 10l6.6-1.4L12 3Z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>'
+};
+
+const ICON_LABELS = [
+  {key:'maths', label:'Mathématiques'}, {key:'francais', label:'Français'}, {key:'histgeo', label:'Histoire-Géo'},
+  {key:'philo', label:'Philosophie'}, {key:'pc', label:'Physique-Chimie'}, {key:'eco', label:'Économie'},
+  {key:'droit', label:'Droit'}, {key:'culture', label:'Culture générale'}, {key:'actu', label:'Actualités'},
+  {key:'code', label:'Informatique'}, {key:'design', label:'Design'}, {key:'bureau', label:'Bureautique'}, {key:'etoile', label:'Autre'}
+];
+const PALETTE = ['teal','brick','amber','slate','plum'];
+
+/* ---------------- Mode administrateur ----------------
+   Limite : ce fichier est une démonstration front-end statique.
+   Le code source (donc ADMIN_PIN) reste visible à quiconque ouvre
+   le fichier ou la console du navigateur. Cette protection empêche
+   un simple visiteur de modifier l'app par erreur ou par curiosité,
+   mais ne remplace pas une vraie authentification côté serveur.
+   Pour une sécurité réelle contre le piratage, il faut un backend
+   qui vérifie l'identité de l'administrateur et stocke les données. */
+const ADMIN_PIN = '77123303ALEX';
+let isAdmin = false;
+
+function openAdminModal(){
+  if(isAdmin){
+    if(confirm('Quitter le mode administrateur ?')){
+      isAdmin = false;
+      refreshAdminUI();
+    }
+    return;
+  }
+  document.getElementById('modalSheet').innerHTML = `
+    <h3>Accès administrateur</h3>
+    <p style="font-size:12.5px; color:var(--ink-soft); margin:-6px 0 16px; line-height:1.5;">
+      Saisissez le code administrateur pour activer la modification de l'application.
+    </p>
+    <div class="modal-label">Code administrateur</div>
+    <div class="field">
+      <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="10" width="16" height="10" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.6"/></svg>
+      <input id="mAdminPin" type="password" maxlength="30" placeholder="Code secret" onkeydown="if(event.key==='Enter') checkAdminPin()">
+    </div>
+    <div class="modal-actions">
+      <button class="btn-outline" onclick="closeModal()">Annuler</button>
+      <button class="btn-solid" onclick="checkAdminPin()">Déverrouiller</button>
+    </div>
+  `;
+  document.getElementById('modalBackdrop').classList.add('open');
+  setTimeout(() => { const el = document.getElementById('mAdminPin'); if(el) el.focus(); }, 50);
+}
+
+function checkAdminPin(){
+  const val = document.getElementById('mAdminPin').value.trim();
+  if(val === ADMIN_PIN){
+    isAdmin = true;
+    closeModal();
+    refreshAdminUI();
+  } else {
+    alert('Code incorrect.');
+  }
+}
+
+function refreshAdminUI(){
+  renderCategories('homeCategories');
+  renderCategories('allCategories');
+  const adminItem = document.getElementById('adminListItem');
+  if(adminItem) adminItem.innerHTML = adminListItemInner();
+  const catScreen = document.getElementById('screen-category');
+  if(catScreen && catScreen.classList.contains('active') && currentCatId){
+    openCategory(currentCatId);
+  }
+}
+
+function adminListItemInner(){
+  return `
+    <div class="ic-sq" style="background:${isAdmin ? 'var(--teal-soft)' : 'var(--brick-soft)'}">
+      <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="10" width="16" height="10" rx="2" stroke="${isAdmin ? 'var(--teal)' : 'var(--brick)'}" stroke-width="1.6"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="${isAdmin ? 'var(--teal)' : 'var(--brick)'}" stroke-width="1.6"/></svg>
+    </div>
+    <span>${isAdmin ? 'Mode administrateur actif' : 'Mode administrateur'}</span>
+    <svg class="chev-r" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+  `;
+}
+
+/* ---------------- Données ---------------- */
+const CATEGORIES = [
+  {id:'maths', nom:'Mathématiques', desc:"Algèbre, analyse, probabilités et exercices corrigés", color:'slate', icon:'maths'},
+  {id:'francais', nom:'Français', desc:"Grammaire, dissertation, commentaire de texte", color:'brick', icon:'francais'},
+  {id:'histgeo', nom:'Histoire-Géographie', desc:"Repères historiques et grandes questions géographiques", color:'amber', icon:'histgeo'},
+  {id:'philo', nom:'Philosophie', desc:"Courants de pensée, notions clés et méthode de dissertation", color:'plum', icon:'philo'},
+  {id:'pc', nom:'Physique-Chimie', desc:"Mécanique, électricité et chimie générale", color:'teal', icon:'pc'},
+  {id:'eco', nom:'Économie', desc:"Microéconomie, macroéconomie et économie du développement", color:'brick', icon:'eco'},
+  {id:'droit', nom:'Droit', desc:"Droit civil, droit constitutionnel et institutions", color:'slate', icon:'droit'},
+  {id:'culture', nom:'Culture générale & QCM', desc:"Entraînement aux QCM et culture générale de concours", color:'amber', icon:'culture'},
+  {id:'actu', nom:'Actualités', desc:"Actualité nationale, africaine et internationale", color:'teal', icon:'actu'}
+];
+
+const FORMATIONS = [
+  {id:1, cat:'maths', titre:'Algèbre & Analyse — Terminale', duree:'14h', niveau:'Intermédiaire', gratuit:false, progression:30, statut:'cours',
+    desc:"Révisez les fonctions, suites, limites et dérivées avec des exercices corrigés type examen.",
+    modules:[
+      {t:'Généralités sur les fonctions', d:'40 min', s:'done'},
+      {t:'Limites et continuité', d:'50 min', s:'open'},
+      {t:'Dérivation et applications', d:'55 min', s:'open'},
+      {t:'Suites numériques', d:'45 min', s:'open'}
+    ]},
+  {id:2, cat:'maths', titre:'Probabilités & Statistiques', duree:'6h', niveau:'Débutant', gratuit:true, progression:0, statut:'nouveau',
+    desc:"Les bases du dénombrement, des probabilités conditionnelles et des statistiques descriptives.",
+    modules:[
+      {t:'Dénombrement', d:'30 min', s:'open'},
+      {t:'Probabilités conditionnelles', d:'40 min', s:'open'},
+      {t:'Statistiques descriptives', d:'35 min', s:'open'}
+    ]},
+  {id:3, cat:'francais', titre:'Réussir sa dissertation', duree:'8h', niveau:'Intermédiaire', gratuit:false, progression:55, statut:'cours',
+    desc:"Méthode complète pour construire un plan, argumenter et rédiger une dissertation solide.",
+    modules:[
+      {t:'Analyser le sujet', d:'25 min', s:'done'},
+      {t:'Construire un plan', d:'35 min', s:'done'},
+      {t:'Rédiger l\u2019introduction', d:'30 min', s:'open'},
+      {t:'Soigner la conclusion', d:'20 min', s:'open'}
+    ]},
+  {id:4, cat:'francais', titre:'Grammaire et orthographe', duree:'5h', niveau:'Débutant', gratuit:true, progression:100, statut:'terminee',
+    desc:"Consolidez les règles essentielles de grammaire et d'orthographe française.",
+    modules:[
+      {t:'Accords du participe passé', d:'25 min', s:'done'},
+      {t:'Les homophones courants', d:'20 min', s:'done'},
+      {t:'Concordance des temps', d:'30 min', s:'done'}
+    ]},
+  {id:5, cat:'histgeo', titre:'Histoire du Burkina Faso et de l\u2019Afrique', duree:'10h', niveau:'Intermédiaire', gratuit:false, progression:20, statut:'cours',
+    desc:"Des grands empires précoloniaux aux indépendances et à la construction des États africains.",
+    modules:[
+      {t:'Grands empires ouest-africains', d:'45 min', s:'done'},
+      {t:'Colonisation et résistances', d:'50 min', s:'open'},
+      {t:'Indépendances africaines', d:'40 min', s:'open'},
+      {t:'Le Burkina Faso depuis 1960', d:'45 min', s:'open'}
+    ]},
+  {id:6, cat:'histgeo', titre:'Géographie économique du monde', duree:'7h', niveau:'Intermédiaire', gratuit:false, progression:0, statut:'nouveau',
+    desc:"Comprendre les grands équilibres économiques et les échanges mondiaux.",
+    modules:[
+      {t:'Mondialisation et échanges', d:'35 min', s:'open'},
+      {t:'Ressources et énergie', d:'30 min', s:'open'},
+      {t:'Espaces émergents', d:'35 min', s:'open'}
+    ]},
+  {id:7, cat:'philo', titre:'Les grands courants philosophiques', duree:'9h', niveau:'Débutant', gratuit:true, progression:12, statut:'cours',
+    desc:"Panorama des grandes notions et courants de pensée pour aborder la dissertation philosophique.",
+    modules:[
+      {t:'Qu\u2019est-ce que la philosophie ?', d:'30 min', s:'done'},
+      {t:'La conscience et le sujet', d:'40 min', s:'open'},
+      {t:'La liberté', d:'35 min', s:'open'},
+      {t:'La méthode de dissertation', d:'40 min', s:'open'}
+    ]},
+  {id:8, cat:'pc', titre:'Mécanique et électricité', duree:'12h', niveau:'Intermédiaire', gratuit:false, progression:0, statut:'nouveau',
+    desc:"Les lois fondamentales de la mécanique et les circuits électriques de base.",
+    modules:[
+      {t:'Cinématique du point', d:'40 min', s:'open'},
+      {t:'Lois de Newton', d:'45 min', s:'open'},
+      {t:'Circuits électriques', d:'40 min', s:'open'}
+    ]},
+  {id:9, cat:'pc', titre:'Chimie organique', duree:'6h', niveau:'Avancé', gratuit:false, progression:0, statut:'nouveau',
+    desc:"Structures, familles de composés et réactions organiques essentielles.",
+    modules:[
+      {t:'Nomenclature organique', d:'30 min', s:'open'},
+      {t:'Réactions de substitution', d:'35 min', s:'open'}
+    ]},
+  {id:10, cat:'eco', titre:'Microéconomie fondamentale', duree:'11h', niveau:'Intermédiaire', gratuit:false, progression:8, statut:'cours',
+    desc:"Offre, demande, marchés et comportement des agents économiques.",
+    modules:[
+      {t:'Offre et demande', d:'35 min', s:'done'},
+      {t:'Élasticités', d:'30 min', s:'open'},
+      {t:'Structures de marché', d:'40 min', s:'open'}
+    ]},
+  {id:11, cat:'droit', titre:'Introduction au droit civil', duree:'8h', niveau:'Débutant', gratuit:true, progression:0, statut:'nouveau',
+    desc:"Les fondements du droit civil : personnes, biens et obligations.",
+    modules:[
+      {t:'Les sources du droit', d:'30 min', s:'open'},
+      {t:'Les personnes juridiques', d:'35 min', s:'open'},
+      {t:'Les obligations', d:'40 min', s:'open'}
+    ]},
+  {id:12, cat:'culture', titre:'Entraînement QCM concours', duree:'5h', niveau:'Tous niveaux', gratuit:true, progression:0, statut:'nouveau',
+    desc:"Séries de questions à choix multiples chronométrées pour s'entraîner aux concours directs.",
+    modules:[
+      {t:'QCM Culture générale — Série 1', d:'20 min', s:'open'},
+      {t:'QCM Culture générale — Série 2', d:'20 min', s:'open'},
+      {t:'QCM Institutions & Symboles', d:'20 min', s:'open'}
+    ]},
+  {id:13, cat:'actu', titre:'Actualité nationale et internationale', duree:'3h', niveau:'Tous niveaux', gratuit:true, progression:0, statut:'nouveau',
+    desc:"Points d'actualité essentiels à connaître pour les entretiens et concours.",
+    modules:[
+      {t:'Actualité du Burkina Faso', d:'20 min', s:'open'},
+      {t:'Actualité de l\u2019UEMOA et l\u2019Afrique', d:'20 min', s:'open'},
+      {t:'Actualité internationale', d:'20 min', s:'open'}
+    ]},
+
+  /* ---- Cours supplémentaires ---- */
+  {id:14, cat:'philo', titre:'Méthodologie de la dissertation', duree:'5h', niveau:'Intermédiaire', gratuit:false, progression:0, statut:'nouveau',
+    desc:"Structurer une problématique, argumenter et illustrer une thèse philosophique.",
+    modules:[
+      {t:'Construire une problématique', d:'30 min', s:'open'},
+      {t:'Argumenter avec des exemples', d:'35 min', s:'open'},
+      {t:'Rédiger la synthèse', d:'25 min', s:'open'}
+    ]},
+  {id:15, cat:'eco', titre:'Économie du développement', duree:'8h', niveau:'Avancé', gratuit:false, progression:0, statut:'nouveau',
+    desc:"Enjeux du développement en Afrique de l'Ouest et politiques économiques.",
+    modules:[
+      {t:'Théories du développement', d:'35 min', s:'open'},
+      {t:'Intégration régionale (UEMOA)', d:'40 min', s:'open'},
+      {t:'Politiques publiques et croissance', d:'35 min', s:'open'}
+    ]},
+  {id:16, cat:'droit', titre:'Droit constitutionnel', duree:'7h', niveau:'Intermédiaire', gratuit:false, progression:0, statut:'nouveau',
+    desc:"Organisation des pouvoirs publics et institutions de la Transition au Burkina Faso.",
+    modules:[
+      {t:'Séparation des pouvoirs', d:'30 min', s:'open'},
+      {t:'Institutions burkinabè', d:'35 min', s:'open'},
+      {t:'Contrôle de constitutionnalité', d:'30 min', s:'open'}
+    ]},
+  {id:17, cat:'culture', titre:'Institutions et symboles du Burkina Faso', duree:'4h', niveau:'Débutant', gratuit:true, progression:0, statut:'nouveau',
+    desc:"Symboles nationaux, institutions et repères civiques essentiels.",
+    modules:[
+      {t:'Symboles nationaux', d:'20 min', s:'open'},
+      {t:'Institutions de la République', d:'25 min', s:'open'},
+      {t:'Repères civiques', d:'20 min', s:'open'}
+    ]},
+
+  /* ---- QCM Actualités BF (un par matière, avec banque de questions) ---- */
+  {id:101, cat:'maths', type:'qcm', titre:"QCM Actualités BF — Éducation & Sciences",
+    desc:"Questions de culture générale scientifique et mathématique, en lien avec le programme scolaire au Burkina Faso.",
+    astuce:"Refaites les calculs de tête plusieurs fois pour gagner en rapidité.",
+    banque:{
+      facile:[
+        {q:"Combien font 12 × 8 ?", options:["86","96","90","106"], correct:1, explication:"12 × 8 = 96."},
+        {q:"Quel est le résultat de 15 % de 200 ?", options:["15","20","30","25"], correct:2, explication:"15 % de 200 = 0,15 × 200 = 30."},
+        {q:"Quelle est la valeur de π arrondie à deux décimales ?", options:["3,14","3,41","3,12","3,16"], correct:0, explication:"π ≈ 3,14159…, soit 3,14 à deux décimales."},
+        {q:"Combien font 9 × 7 ?", options:["56","63","72","54"], correct:1, explication:"9 × 7 = 63."},
+        {q:"Quel est le carré de 6 ?", options:["12","36","30","24"], correct:1, explication:"6² = 6 × 6 = 36."},
+        {q:"Combien de côtés a un hexagone ?", options:["5","6","7","8"], correct:1, explication:"Un hexagone possède 6 côtés."},
+        {q:"Quelle est la moitié de 84 ?", options:["40","42","44","46"], correct:1, explication:"84 ÷ 2 = 42."},
+        {q:"Combien font 100 ÷ 4 ?", options:["20","25","30","40"], correct:1, explication:"100 ÷ 4 = 25."},
+        {q:"Quel est le double de 37 ?", options:["64","74","70","84"], correct:1, explication:"37 × 2 = 74."},
+        {q:"Combien de degrés fait un angle droit ?", options:["45°","90°","180°","360°"], correct:1, explication:"Un angle droit mesure 90°."},
+        {q:"Quel est le résultat de 7² ?", options:["14","42","49","56"], correct:2, explication:"7² = 7 × 7 = 49."},
+        {q:"Quel est l'équivalent de 3/4 en pourcentage ?", options:["34 %","75 %","43 %","57 %"], correct:1, explication:"3/4 = 0,75, soit 75 %."},
+        {q:"Quel est le plus grand nombre premier inférieur à 10 ?", options:["9","7","8","10"], correct:1, explication:"7 est premier ; 8, 9 et 10 ne le sont pas."},
+        {q:"Combien de faces a un cube ?", options:["4","6","8","12"], correct:1, explication:"Un cube a 6 faces carrées."},
+        {q:"Quelle est la racine carrée de 81 ?", options:["7","8","9","10"], correct:2, explication:"9 × 9 = 81, donc √81 = 9."},
+        {q:"Combien de minutes y a-t-il dans une heure ?", options:["50","60","100","120"], correct:1, explication:"Une heure compte 60 minutes."},
+        {q:"Combien de centimètres y a-t-il dans un mètre ?", options:["10","100","1000","10000"], correct:1, explication:"1 mètre = 100 centimètres."},
+        {q:"Quel est le successeur de 99 ?", options:["98","100","101","110"], correct:1, explication:"Le successeur de 99 est 100."},
+        {q:"Combien font 8 + 15 ?", options:["21","22","23","24"], correct:2, explication:"8 + 15 = 23."},
+        {q:"Quel est le périmètre d'un carré de côté 5 ?", options:["10","15","20","25"], correct:2, explication:"Périmètre = 4 × côté = 4 × 5 = 20."}
+      ],
+      moyen:[
+        {q:"Quelle est la dérivée de f(x) = x² ?", options:["2x","x","2","x²"], correct:0, explication:"La dérivée de xⁿ est n·x^(n-1) : pour x², la dérivée est 2x."},
+        {q:"Combien de solutions réelles a l'équation x² + 1 = 0 ?", options:["0","1","2","Une infinité"], correct:0, explication:"x² = -1 n'a pas de solution réelle, un carré étant toujours positif ou nul."},
+        {q:"Quelle est la somme des angles d'un triangle ?", options:["90°","180°","270°","360°"], correct:1, explication:"La somme des angles d'un triangle vaut toujours 180°."},
+        {q:"Quelle est la solution de 2x + 3 = 11 ?", options:["x = 3","x = 4","x = 5","x = 6"], correct:1, explication:"2x = 8, donc x = 4."},
+        {q:"Quelle est la dérivée de sin(x) ?", options:["cos(x)","-cos(x)","sin(x)","-sin(x)"], correct:0, explication:"La dérivée de sin(x) est cos(x)."},
+        {q:"Combien de solutions réelles a x² - 4 = 0 ?", options:["0","1","2","3"], correct:2, explication:"x² = 4 donne x = 2 ou x = -2, soit deux solutions."},
+        {q:"Quelle est l'aire d'un cercle de rayon r ?", options:["2πr","πr","πr²","2πr²"], correct:2, explication:"L'aire d'un cercle est πr²."},
+        {q:"Quel est le PGCD de 12 et 18 ?", options:["2","3","6","9"], correct:2, explication:"Le plus grand commun diviseur de 12 et 18 est 6."},
+        {q:"Que vaut log(100) en base 10 ?", options:["1","2","10","100"], correct:1, explication:"log₁₀(100) = 2 car 10² = 100."},
+        {q:"Combien de façons de choisir 2 objets parmi 5 ?", options:["5","8","10","20"], correct:2, explication:"Le nombre de combinaisons C(5,2) = 10."},
+        {q:"Quelle est la pente de la droite y = 3x + 2 ?", options:["2","3","5","1/3"], correct:1, explication:"Dans y = ax + b, la pente est a, ici 3."},
+        {q:"Quel est le résultat de 2³ × 2² ?", options:["16","24","32","64"], correct:2, explication:"2³ × 2² = 2⁵ = 32."},
+        {q:"Quelle est la médiane de {2, 4, 6, 8, 10} ?", options:["4","6","8","5"], correct:1, explication:"La valeur centrale de la série ordonnée est 6."},
+        {q:"Quelle est l'aire d'un triangle de base 8 et hauteur 5 ?", options:["13","20","40","30"], correct:1, explication:"Aire = (base × hauteur) / 2 = (8×5)/2 = 20."},
+        {q:"Combien vaut sin(90°) ?", options:["0","0,5","1","-1"], correct:2, explication:"sin(90°) = 1."},
+        {q:"Quelle est la forme générale d'une fonction affine ?", options:["y = ax²","y = ax + b","y = a/x","y = aˣ"], correct:1, explication:"Une fonction affine s'écrit y = ax + b."},
+        {q:"Quel est le discriminant de x² + 2x + 1 = 0 ?", options:["-4","0","4","8"], correct:1, explication:"Δ = b² - 4ac = 4 - 4 = 0."},
+        {q:"Quelle est la somme des entiers de 1 à 5 ?", options:["10","15","20","25"], correct:1, explication:"1+2+3+4+5 = 15."},
+        {q:"Quel est le volume d'un cube de côté 3 ?", options:["9","18","27","36"], correct:2, explication:"Volume = côté³ = 3³ = 27."},
+        {q:"Quelle est la probabilité d'obtenir pile avec une pièce équilibrée ?", options:["1/4","1/3","1/2","1"], correct:2, explication:"Une pièce équilibrée a une chance sur deux de tomber sur pile."}
+      ],
+      difficile:[
+        {q:"Quelle est la limite de (1 + 1/n)^n quand n tend vers l'infini ?", options:["0","1","e","∞"], correct:2, explication:"Cette limite classique définit le nombre e (≈ 2,718)."},
+        {q:"Combien vaut l'intégrale de 0 à 1 de 2x dx ?", options:["0","1","2","1/2"], correct:1, explication:"∫2x dx = x², évaluée entre 0 et 1 : 1 - 0 = 1."},
+        {q:"Quel est le déterminant d'une matrice identité 3×3 ?", options:["0","1","3","9"], correct:1, explication:"Le déterminant d'une matrice identité vaut toujours 1."},
+        {q:"Quelle est la dérivée de ln(x) ?", options:["x","1/x","ln(x)","eˣ"], correct:1, explication:"La dérivée de ln(x) est 1/x."},
+        {q:"Quelle est une primitive de 1/x ?", options:["x²/2","ln|x|","eˣ","1/x²"], correct:1, explication:"La primitive de 1/x est ln|x| + C."},
+        {q:"Quel est le rayon de convergence de la série Σxⁿ ?", options:["0","1","2","∞"], correct:1, explication:"La série géométrique Σxⁿ converge pour |x| < 1, rayon de convergence 1."},
+        {q:"Quelle est la valeur de e⁰ ?", options:["0","1","e","-1"], correct:1, explication:"Tout nombre non nul élevé à la puissance 0 vaut 1."},
+        {q:"Quel est le rang d'une matrice inversible 3×3 ?", options:["1","2","3","0"], correct:2, explication:"Une matrice inversible de taille 3×3 a un rang égal à 3."},
+        {q:"Quelle est la dérivée seconde de x³ ?", options:["3x²","6x","x²","6"], correct:1, explication:"La dérivée de x³ est 3x², puis sa dérivée est 6x."},
+        {q:"Quelle est la limite de sin(x)/x quand x tend vers 0 ?", options:["0","1","∞","Elle n'existe pas"], correct:1, explication:"C'est une limite classique qui vaut 1."},
+        {q:"Combien de permutations existe-t-il pour 4 éléments distincts ?", options:["4","12","24","16"], correct:2, explication:"Le nombre de permutations de 4 éléments est 4! = 24."},
+        {q:"Quelle est la solution générale de l'équation différentielle y' = y ?", options:["y = x + C","y = Cx","y = Ceˣ","y = C/x"], correct:2, explication:"La solution générale de y' = y est y = Ceˣ."},
+        {q:"Comment calcule-t-on le déterminant d'une matrice triangulaire ?", options:["En additionnant la diagonale","En multipliant les éléments diagonaux","En multipliant toutes les valeurs","Il est toujours nul"], correct:1, explication:"Le déterminant d'une matrice triangulaire est le produit de ses éléments diagonaux."},
+        {q:"Quelle est la valeur propre d'une matrice identité ?", options:["0","1","-1","Elle varie"], correct:1, explication:"Toutes les valeurs propres d'une matrice identité valent 1."},
+        {q:"Quelle est une primitive de eˣ ?", options:["eˣ","xeˣ","ln(x)","eˣ⁺¹"], correct:0, explication:"La primitive de eˣ est eˣ + C."},
+        {q:"Quel est le développement limité de eˣ à l'ordre 1 en 0 ?", options:["x","1 + x","1 - x","x²"], correct:1, explication:"eˣ ≈ 1 + x au premier ordre autour de 0."},
+        {q:"La série harmonique Σ1/n est-elle convergente ou divergente ?", options:["Convergente","Divergente","Alternée","Nulle"], correct:1, explication:"La série harmonique diverge, bien que son terme général tende vers 0."},
+        {q:"Que vaut le produit scalaire de deux vecteurs orthogonaux ?", options:["1","-1","0","Leur norme"], correct:2, explication:"Deux vecteurs orthogonaux ont un produit scalaire nul."},
+        {q:"Quel est le développement limité de cos(x) à l'ordre 2 en 0 ?", options:["1 - x²/2","1 + x²/2","x - x²/2","1 - x"], correct:0, explication:"cos(x) ≈ 1 - x²/2 au voisinage de 0."},
+        {q:"Quel est le noyau d'une application linéaire injective ?", options:["L'espace entier","{0}","Un sous-espace de dimension 1","Il n'existe pas"], correct:1, explication:"Une application linéaire est injective si et seulement si son noyau se réduit à {0}."}
+      ]
+    }},
+  {id:102, cat:'francais', type:'qcm', titre:"QCM Actualités BF — Culture & Littérature",
+    desc:"Questions de langue française et de repères littéraires utiles pour les concours.",
+    astuce:"Relisez une règle de grammaire par jour pour progresser sans effort.",
+    banque:{
+      facile:[
+        {q:"Quel est le pluriel de « cheval » ?", options:["Chevals","Chevaux","Chevales","Chevaus"], correct:1, explication:"« Cheval » a un pluriel irrégulier : « chevaux »."},
+        {q:"Quel type de mot est « rapidement » ?", options:["Un nom","Un adjectif","Un adverbe","Un verbe"], correct:2, explication:"« Rapidement » modifie un verbe : c'est un adverbe."},
+        {q:"Quel est l'antonyme de « joyeux » ?", options:["Content","Triste","Heureux","Gai"], correct:1, explication:"« Triste » est le contraire de « joyeux »."},
+        {q:"Quel est le féminin de « acteur » ?", options:["Actrice","Acteure","Actoresse","Actorine"], correct:0, explication:"Le féminin de « acteur » est « actrice »."},
+        {q:"Quel est le pluriel de « journal » ?", options:["Journals","Journaux","Journales","Journaus"], correct:1, explication:"« Journal » suit la règle des mots en -al : pluriel en -aux."},
+        {q:"Quel est le contraire de « grand » ?", options:["Immense","Petit","Large","Haut"], correct:1, explication:"« Petit » est l'antonyme de « grand »."},
+        {q:"Quel est un synonyme de « content » ?", options:["Triste","Heureux","Fâché","Fatigué"], correct:1, explication:"« Heureux » a un sens proche de « content »."},
+        {q:"Combien de voyelles compte l'alphabet français (a, e, i, o, u, y) ?", options:["4","5","6","7"], correct:2, explication:"Le français compte 6 voyelles : a, e, i, o, u, y."},
+        {q:"Quel est l'article défini masculin singulier ?", options:["La","Le","Les","L'"], correct:1, explication:"« Le » est l'article défini masculin singulier."},
+        {q:"Quel temps est utilisé dans « je mangerai » ?", options:["Présent","Passé composé","Futur simple","Imparfait"], correct:2, explication:"« Je mangerai » est conjugué au futur simple."},
+        {q:"Quel est le pluriel de « bijou » ?", options:["Bijoux","Bijous","Bijoues","Bijoutes"], correct:0, explication:"« Bijou » fait partie des noms en -ou qui prennent un x au pluriel."},
+        {q:"Quel est le contraire de « rapide » ?", options:["Vite","Lent","Pressé","Actif"], correct:1, explication:"« Lent » est l'antonyme de « rapide »."},
+        {q:"Comment appelle-t-on un mot qui a le même sens qu'un autre ?", options:["Un antonyme","Un synonyme","Un homonyme","Un paronyme"], correct:1, explication:"Un synonyme est un mot de sens voisin ou identique."},
+        {q:"Quel est le féminin de « directeur » ?", options:["Directrice","Directeuse","Directoresse","Directoire"], correct:0, explication:"Le féminin de « directeur » est « directrice »."},
+        {q:"Quel est le sujet dans « Le chat dort » ?", options:["Dort","Le chat","Le","Chat dort"], correct:1, explication:"« Le chat » est le groupe sujet du verbe « dort »."},
+        {q:"Quel signe de ponctuation termine une question ?", options:["Le point","Le point d'exclamation","Le point d'interrogation","Les points de suspension"], correct:2, explication:"Une phrase interrogative se termine par un point d'interrogation."},
+        {q:"Quel est le pluriel de « un œil » ?", options:["Des œils","Des yeux","Des œilles","Des œux"], correct:1, explication:"Le pluriel irrégulier de « œil » est « yeux »."},
+        {q:"Quel est l'infinitif du verbe conjugué dans « je vais » ?", options:["Voir","Venir","Aller","Valoir"], correct:2, explication:"« Je vais » vient du verbe « aller »."},
+        {q:"Quel est le contraire de « ouvrir » ?", options:["Fermer","Sortir","Entrer","Casser"], correct:0, explication:"« Fermer » est l'antonyme de « ouvrir »."},
+        {q:"Quel est le genre du mot « table » ?", options:["Masculin","Féminin","Neutre","Variable"], correct:1, explication:"« Table » est un nom féminin en français."}
+      ],
+      moyen:[
+        {q:"Dans une dissertation, que désigne la « thèse » ?", options:["La conclusion","L'idée défendue","Un exemple","La citation"], correct:1, explication:"La thèse est l'idée principale défendue dans l'argumentation."},
+        {q:"Quel temps exprime une action habituelle dans le passé ?", options:["Le passé simple","L'imparfait","Le futur","Le conditionnel"], correct:1, explication:"L'imparfait exprime une action répétée ou habituelle dans le passé."},
+        {q:"Quelle figure de style compare deux éléments avec « comme » ?", options:["La métaphore","La comparaison","L'hyperbole","L'antithèse"], correct:1, explication:"La comparaison utilise un outil comme « comme » ou « tel que »."},
+        {q:"Quel est le rôle d'un connecteur logique ?", options:["Décrire un lieu","Relier des idées entre elles","Remplacer un nom","Conjuguer un verbe"], correct:1, explication:"Un connecteur logique relie des idées pour structurer un raisonnement."},
+        {q:"Quelle figure de style attribue des sentiments humains à une chose ?", options:["La métaphore","La personnification","L'euphémisme","L'ellipse"], correct:1, explication:"La personnification prête des caractéristiques humaines à un objet ou une idée."},
+        {q:"Quel est le temps privilégié du récit au passé en littérature ?", options:["Le présent","Le passé simple","Le futur antérieur","Le conditionnel"], correct:1, explication:"Le passé simple est traditionnellement le temps du récit littéraire."},
+        {q:"Qu'est-ce qu'un pléonasme ?", options:["Une répétition inutile d'une même idée","Une comparaison","Une négation","Une question rhétorique"], correct:0, explication:"Un pléonasme répète une idée déjà exprimée (ex. « monter en haut »)."},
+        {q:"Quel est le rôle de l'antithèse ?", options:["Renforcer une comparaison","Opposer deux idées contraires","Atténuer une idée","Répéter un son"], correct:1, explication:"L'antithèse met en relief deux idées opposées dans une même phrase."},
+        {q:"Qu'est-ce qu'un synonyme contextuel ?", options:["Un mot toujours identique en sens","Un mot proche de sens selon le contexte","Un mot de sens opposé","Un mot qui se prononce pareil"], correct:1, explication:"Un synonyme contextuel dépend du sens précis dans une phrase donnée."},
+        {q:"Quelle est la différence entre homophone et homonyme ?", options:["Aucune différence","L'homophone se prononce pareil, l'homonyme s'écrit et se prononce pareil","L'homonyme est toujours un verbe","L'homophone désigne un synonyme"], correct:1, explication:"Les homophones se prononcent de façon identique, les homonymes s'écrivent aussi de façon identique."},
+        {q:"Qu'est-ce qu'une proposition subordonnée relative ?", options:["Une proposition introduite par une conjonction","Une proposition introduite par un pronom relatif","Une phrase sans verbe","Une proposition principale"], correct:1, explication:"Elle est introduite par un pronom relatif comme « qui », « que », « dont »."},
+        {q:"Quel est le rôle du complément d'objet indirect (COI) ?", options:["Il complète le sujet","Il complète indirectement le verbe","Il indique le temps","Il remplace l'adjectif"], correct:1, explication:"Le COI complète le verbe par l'intermédiaire d'une préposition."},
+        {q:"Qu'est-ce qu'une allitération ?", options:["La répétition d'un son consonne","La répétition d'une voyelle","Une comparaison implicite","Une exagération"], correct:0, explication:"L'allitération répète un même son consonantique dans une phrase."},
+        {q:"Quel est le présent du subjonctif de « être » à la 3e personne du singulier ?", options:["Qu'il est","Qu'il soit","Qu'il sera","Qu'il était"], correct:1, explication:"Au subjonctif présent, « être » donne « qu'il soit »."},
+        {q:"Qu'est-ce qu'un euphémisme ?", options:["Une expression atténuée d'une réalité dure","Une exagération volontaire","Une répétition de mots","Une question sans réponse"], correct:0, explication:"L'euphémisme adoucit l'expression d'une réalité pénible."},
+        {q:"Quelle est la fonction de l'attribut du sujet ?", options:["Il indique le lieu","Il qualifie le sujet via un verbe d'état","Il remplace le verbe","Il complète l'objet"], correct:1, explication:"L'attribut du sujet qualifie le sujet à travers un verbe d'état comme « être »."},
+        {q:"Qu'est-ce qu'une paronomase ?", options:["Un rapprochement de mots proches par le son","Une répétition exacte d'un mot","Une comparaison avec « comme »","Une négation renforcée"], correct:0, explication:"La paronomase rapproche des mots de sonorité voisine mais de sens différent."},
+        {q:"Quel est le rôle de l'apostrophe en grammaire ?", options:["Marquer l'élision d'une voyelle","Terminer une phrase","Introduire une citation","Séparer deux propositions"], correct:0, explication:"L'apostrophe marque la suppression d'une voyelle finale devant une autre voyelle."},
+        {q:"Qu'est-ce qu'un oxymore ?", options:["L'association de deux mots contradictoires","Une répétition de sons","Une comparaison implicite","Une expression atténuée"], correct:0, explication:"L'oxymore associe deux termes de sens opposé (ex. « une obscure clarté »)."},
+        {q:"Quelle figure de style consiste à dire moins pour suggérer plus ?", options:["L'hyperbole","La litote","La métaphore","L'anaphore"], correct:1, explication:"La litote atténue l'expression pour mieux suggérer une idée forte."}
+      ],
+      difficile:[
+        {q:"Quel mode grammatical exprime le doute ou l'hypothèse ?", options:["L'indicatif","Le subjonctif","L'impératif","L'infinitif"], correct:1, explication:"Le subjonctif exprime le doute, le souhait ou l'hypothèse."},
+        {q:"Qu'est-ce qu'un « chiasme » en rhétorique ?", options:["Une répétition de sons","Une structure croisée (ABBA)","Une exagération","Une question sans réponse"], correct:1, explication:"Le chiasme dispose les termes en miroir (A-B-B-A)."},
+        {q:"Quelle est la fonction du complément d'objet direct (COD) ?", options:["Il complète le sujet","Il reçoit directement l'action du verbe","Il indique le lieu","Il remplace l'adjectif"], correct:1, explication:"Le COD reçoit directement l'action exprimée par le verbe."},
+        {q:"Qu'est-ce que la diérèse en poésie ?", options:["La fusion de deux syllabes en une","La prononciation en deux syllabes distinctes de voyelles contiguës","Une rime approximative","Un vers sans rime"], correct:1, explication:"La diérèse sépare en deux syllabes des voyelles habituellement prononcées ensemble."},
+        {q:"Qu'est-ce qu'un hypallage ?", options:["Une figure qui déplace un qualificatif sur un autre terme","Une répétition de sons","Une opposition de deux idées","Une comparaison implicite"], correct:0, explication:"L'hypallage attribue à un mot une qualité qui concerne logiquement un autre terme."},
+        {q:"Quelle est la valeur du plus-que-parfait ?", options:["Une action future","Une action antérieure à une autre action passée","Une action habituelle au présent","Une hypothèse"], correct:1, explication:"Le plus-que-parfait exprime une action accomplie avant une autre action passée."},
+        {q:"Qu'est-ce que l'anaphore en rhétorique ?", options:["La répétition d'un mot en début de phrase ou de vers","Une comparaison implicite","Une atténuation d'idée","Une opposition de deux mots"], correct:0, explication:"L'anaphore répète un même mot ou groupe de mots en tête de phrases successives."},
+        {q:"Qu'est-ce qu'un zeugme ?", options:["L'union de deux termes par un mot commun employé dans des sens différents","Une répétition sonore","Une négation renforcée","Une comparaison directe"], correct:0, explication:"Le zeugme associe deux compléments à un même verbe avec des sens différents."},
+        {q:"Quelle est la différence entre « que » conjonction et « que » pronom relatif ?", options:["Il n'y a pas de différence","La conjonction introduit une complétive, le pronom relatif remplace un antécédent","Le pronom relatif introduit toujours une question","La conjonction ne s'emploie qu'à l'oral"], correct:1, explication:"« Que » conjonction introduit une proposition complétive ; « que » pronom relatif reprend un nom déjà cité."},
+        {q:"Qu'est-ce que la prolepse en narratologie ?", options:["Un retour en arrière dans le récit","Une anticipation d'un événement futur dans le récit","Une description statique","Un dialogue rapporté"], correct:1, explication:"La prolepse est une anticipation narrative d'un événement à venir."},
+        {q:"Qu'est-ce que le discours indirect libre ?", options:["Un dialogue entre guillemets","Un mélange du discours du narrateur et des pensées du personnage sans marques typographiques","Une citation exacte introduite par deux points","Un monologue théâtral"], correct:1, explication:"Le discours indirect libre fusionne la voix du narrateur et celle du personnage sans marque explicite."},
+        {q:"Quelle est la fonction de l'apposition ?", options:["Elle remplace le verbe","Elle apporte une précision sur un nom sans lien grammatical direct","Elle introduit une subordonnée","Elle marque le temps"], correct:1, explication:"L'apposition juxtapose un élément qui précise un nom, sans mot de liaison obligatoire."},
+        {q:"Qu'est-ce qu'une gradation ?", options:["Une succession de termes d'intensité croissante ou décroissante","Une répétition identique","Une comparaison implicite","Une négation double"], correct:0, explication:"La gradation ordonne des termes selon une intensité progressive."},
+        {q:"Qu'est-ce qu'une synecdoque ?", options:["Désigner un tout par une partie, ou l'inverse","Une comparaison avec « comme »","Une atténuation volontaire","Une répétition de sons"], correct:0, explication:"La synecdoque utilise une partie pour désigner le tout (ou l'inverse), comme « les voiles » pour « les bateaux »."},
+        {q:"Quelle est la valeur modale du conditionnel dans une hypothèse ?", options:["Il exprime une certitude","Il exprime une action soumise à une condition","Il exprime le passé proche","Il exprime un ordre"], correct:1, explication:"Le conditionnel exprime une action dépendant d'une condition non réalisée."},
+        {q:"Qu'est-ce qu'un enjambement en poésie ?", options:["Une rime interne","Le prolongement d'une phrase au-delà de la fin du vers","Une strophe sans rime","Une répétition de syllabes"], correct:1, explication:"L'enjambement fait déborder la syntaxe d'un vers sur le suivant."},
+        {q:"Qu'est-ce qu'une antiphrase ?", options:["Dire le contraire de ce que l'on pense, souvent par ironie","Une répétition de mots","Une comparaison directe","Une négation simple"], correct:0, explication:"L'antiphrase exprime, souvent ironiquement, le contraire de la pensée réelle."},
+        {q:"Qu'est-ce que la paralipse ?", options:["Feindre de ne pas vouloir parler de quelque chose tout en le disant","Une répétition de sons","Une comparaison implicite","Une gradation"], correct:0, explication:"La paralipse consiste à annoncer qu'on ne parlera pas d'un sujet... tout en en parlant."},
+        {q:"Quelle est la différence entre métonymie et métaphore ?", options:["Il n'y a pas de différence","La métonymie repose sur un lien logique, la métaphore sur une ressemblance","La métaphore est toujours négative","La métonymie ne s'emploie qu'en poésie"], correct:1, explication:"La métonymie associe des éléments liés logiquement, la métaphore rapproche par ressemblance."},
+        {q:"Qu'est-ce qu'un vers libre ?", options:["Un vers sans règle fixe de rimes ni de mètre","Un vers de 12 syllabes obligatoire","Un vers toujours rimé","Un vers en prose"], correct:0, explication:"Le vers libre s'affranchit des règles classiques de mètre et de rimes."}
+      ]
+    }},
+  {id:103, cat:'histgeo', type:'qcm', titre:"QCM Actualités BF — Institutions & Territoire",
+    desc:"Questions sur la géographie, l'histoire et les institutions du Burkina Faso.",
+    astuce:"Repérez les grandes dates et les lieux clés sur une carte ou une frise.",
+    banque:{
+      facile:[
+        {q:"Quelle est la capitale du Burkina Faso ?", options:["Bobo-Dioulasso","Ouagadougou","Koudougou","Banfora"], correct:1, explication:"Ouagadougou est la capitale politique et administrative du pays."},
+        {q:"Le Burkina Faso s'appelait auparavant :", options:["Haute-Volta","Soudan français","Côte d'Ivoire française","Dahomey"], correct:0, explication:"Le pays s'appelait Haute-Volta avant de devenir le Burkina Faso en 1984."},
+        {q:"Le Burkina Faso est un pays :", options:["Côtier","Insulaire","Enclavé, sans accès à la mer","Un archipel"], correct:2, explication:"Le Burkina Faso n'a pas d'accès à la mer : c'est un pays enclavé."}
+      ],
+      moyen:[
+        {q:"En quelle année le Burkina Faso a-t-il obtenu son indépendance ?", options:["1958","1960","1965","1970"], correct:1, explication:"Le pays a obtenu son indépendance de la France le 5 août 1960."},
+        {q:"Quelle organisation regroupe le Burkina Faso et sept autres pays partageant le franc CFA ?", options:["La CEDEAO","L'UEMOA","L'Union africaine","L'ONU"], correct:1, explication:"L'UEMOA regroupe huit pays d'Afrique de l'Ouest partageant une monnaie commune."},
+        {q:"Quel grand fleuve traverse en partie le territoire burkinabè ?", options:["Le Nil","Le Congo","Le Niger","Le Zambèze"], correct:2, explication:"Le fleuve Niger traverse en partie l'est du Burkina Faso."}
+      ],
+      difficile:[
+        {q:"Qui a rebaptisé la Haute-Volta en « Burkina Faso » ?", options:["Maurice Yaméogo","Thomas Sankara","Blaise Compaoré","Sangoulé Lamizana"], correct:1, explication:"Thomas Sankara a renommé le pays « Burkina Faso » en 1984."},
+        {q:"Quelle végétation domine le territoire burkinabè ?", options:["La forêt équatoriale","La savane","Le désert de dunes","La toundra"], correct:1, explication:"Le Burkina Faso est majoritairement couvert par la savane, sous climat soudano-sahélien."},
+        {q:"Combien de régions administratives comptait traditionnellement le Burkina Faso ?", options:["10","13","16","20"], correct:1, explication:"Le pays comptait traditionnellement 13 régions administratives."}
+      ]
+    }},
+  {id:104, cat:'philo', type:'qcm', titre:"QCM Actualités BF — Société & Débats",
+    desc:"Questions sur les grandes notions et les grands courants de la philosophie.",
+    astuce:"Associez chaque auteur à une notion clé pour mieux mémoriser.",
+    banque:{
+      facile:[
+        {q:"Qui est l'auteur du « Discours de la méthode » ?", options:["Platon","Descartes","Kant","Aristote"], correct:1, explication:"René Descartes est l'auteur du « Discours de la méthode » (1637)."},
+        {q:"Quelle notion désigne la capacité de se déterminer soi-même ?", options:["La liberté","La nécessité","La contrainte","L'ignorance"], correct:0, explication:"La liberté désigne la capacité d'agir selon sa propre volonté."},
+        {q:"Qui a fondé l'Académie à Athènes ?", options:["Socrate","Platon","Aristote","Épicure"], correct:1, explication:"Platon a fondé l'Académie, une des premières écoles philosophiques."}
+      ],
+      moyen:[
+        {q:"Quel courant affirme que la connaissance vient de l'expérience sensible ?", options:["Le rationalisme","L'empirisme","Le dogmatisme","Le scepticisme"], correct:1, explication:"L'empirisme soutient que toute connaissance provient de l'expérience sensorielle."},
+        {q:"Chez Kant, qu'est-ce que « l'impératif catégorique » ?", options:["Une loi scientifique","Un principe moral universel","Une règle de logique","Une théorie politique"], correct:1, explication:"C'est un principe moral que l'on doit suivre universellement, selon Kant."},
+        {q:"Que signifie « cogito ergo sum » ?", options:["Je pense donc je suis","Je vois donc j'existe","Je doute donc j'ignore","Je vis donc j'agis"], correct:0, explication:"C'est la célèbre formule de Descartes : « Je pense, donc je suis »."}
+      ],
+      difficile:[
+        {q:"Quel philosophe a développé le concept de « volonté de puissance » ?", options:["Nietzsche","Hegel","Marx","Sartre"], correct:0, explication:"Nietzsche a développé ce concept comme force fondamentale de la vie."},
+        {q:"Selon Sartre, que signifie « l'existence précède l'essence » ?", options:["L'homme naît avec une nature fixe","L'homme se définit par ses choix, non par une nature préétablie","L'essence prime sur l'existence","Il n'existe aucune liberté"], correct:1, explication:"Pour Sartre, l'homme se construit librement par ses actes."},
+        {q:"Qu'est-ce que la « maïeutique » chez Socrate ?", options:["Une méthode pour faire naître les idées par le dialogue","Une théorie politique","Un système de calcul","Une forme de poésie"], correct:0, explication:"La maïeutique fait « accoucher » les esprits de leurs propres idées par le questionnement."}
+      ]
+    }},
+  {id:105, cat:'pc', type:'qcm', titre:"QCM Actualités BF — Innovation & Environnement",
+    desc:"Questions de physique-chimie utiles pour les concours scientifiques.",
+    astuce:"Apprenez les unités de mesure par cœur, elles reviennent souvent.",
+    banque:{
+      facile:[
+        {q:"Quelle est l'unité de la force dans le Système International ?", options:["Le watt","Le newton","Le joule","Le volt"], correct:1, explication:"La force se mesure en newtons (N)."},
+        {q:"Quel est le symbole chimique de l'eau ?", options:["O2","H2O","CO2","NaCl"], correct:1, explication:"L'eau a pour formule chimique H2O."},
+        {q:"Quelle grandeur mesure-t-on en degrés Celsius ?", options:["La masse","La température","La pression","La vitesse"], correct:1, explication:"Le degré Celsius est une unité de température."},
+        {q:"Quelle est l'unité de la masse dans le Système International ?", options:["Le gramme","Le kilogramme","La livre","La tonne"], correct:1, explication:"L'unité de masse du Système International est le kilogramme (kg)."},
+        {q:"Quel est le symbole chimique du carbone ?", options:["Ca","C","Co","Cb"], correct:1, explication:"Le carbone a pour symbole chimique C."},
+        {q:"Quelle est l'unité de longueur dans le Système International ?", options:["Le centimètre","Le mètre","Le kilomètre","Le pouce"], correct:1, explication:"Le mètre (m) est l'unité de longueur du Système International."},
+        {q:"Dans quel état se trouve l'eau à 0 °C (sous pression normale) ?", options:["Liquide","Solide","Gazeux","Plasma"], correct:1, explication:"À 0 °C sous pression normale, l'eau se transforme en glace, à l'état solide."},
+        {q:"Quel est le symbole chimique de l'oxygène ?", options:["Ox","O","Og","O2 uniquement"], correct:1, explication:"L'oxygène a pour symbole chimique O."},
+        {q:"Quelle est l'unité de temps dans le Système International ?", options:["La minute","La seconde","L'heure","Le jour"], correct:1, explication:"La seconde (s) est l'unité de temps du Système International."},
+        {q:"Quel est le symbole chimique du fer ?", options:["F","Fe","Fr","Fi"], correct:1, explication:"Le fer a pour symbole chimique Fe (du latin ferrum)."},
+        {q:"Quelle est l'unité de l'intensité électrique ?", options:["Le volt","L'ampère","Le watt","L'ohm"], correct:1, explication:"L'intensité électrique se mesure en ampères (A)."},
+        {q:"Dans quel état se trouve l'eau à 100 °C, sous pression atmosphérique normale ?", options:["Solide","Liquide","Gazeux","Plasma"], correct:2, explication:"À 100 °C sous pression normale, l'eau bout et devient vapeur, à l'état gazeux."},
+        {q:"Quel est le symbole chimique du sodium ?", options:["S","So","Na","Sd"], correct:2, explication:"Le sodium a pour symbole chimique Na (du latin natrium)."},
+        {q:"Quelle est l'unité de la puissance électrique ?", options:["Le volt","L'ampère","Le watt","Le joule"], correct:2, explication:"La puissance électrique se mesure en watts (W)."},
+        {q:"Quel est le symbole chimique de l'azote ?", options:["Az","A","N","No"], correct:2, explication:"L'azote a pour symbole chimique N."},
+        {q:"Quelle est la vitesse de la lumière dans le vide, arrondie ?", options:["300 km/s","300 000 km/s","3 000 km/s","30 000 km/s"], correct:1, explication:"La lumière se déplace dans le vide à environ 300 000 km/s."},
+        {q:"Quel est le symbole chimique de l'or ?", options:["Or","O","Au","Ag"], correct:2, explication:"L'or a pour symbole chimique Au (du latin aurum)."},
+        {q:"Quelle est l'unité de la tension électrique ?", options:["L'ampère","Le volt","Le watt","L'ohm"], correct:1, explication:"La tension électrique se mesure en volts (V)."},
+        {q:"Quel état de la matière a un volume et une forme propres ?", options:["Gazeux","Liquide","Solide","Plasma"], correct:2, explication:"L'état solide possède une forme et un volume propres."},
+        {q:"Quel est le symbole chimique du chlore ?", options:["Cl","C","Ch","Co"], correct:0, explication:"Le chlore a pour symbole chimique Cl."}
+      ],
+      moyen:[
+        {q:"Quelle loi relie tension, intensité et résistance dans un circuit ?", options:["La loi de Newton","La loi d'Ohm","La loi de Coulomb","La loi de Joule"], correct:1, explication:"La loi d'Ohm énonce que U = R × I."},
+        {q:"Quel est le pH d'une solution neutre à 25 °C ?", options:["0","7","14","10"], correct:1, explication:"Une solution neutre a un pH de 7 à 25 °C."},
+        {q:"Quelle grandeur se mesure en newtons par mètre carré ?", options:["L'énergie","La pression","La vitesse","La masse volumique"], correct:1, explication:"La pression se mesure en pascals, soit N/m²."},
+        {q:"Quelle est la formule de la puissance électrique ?", options:["P = U + I","P = U × I","P = U / I","P = U − I"], correct:1, explication:"La puissance électrique est le produit de la tension et de l'intensité : P = U × I."},
+        {q:"Comment se nomme la force qui s'oppose au mouvement entre deux surfaces ?", options:["La gravité","Le frottement","La poussée","L'inertie"], correct:1, explication:"Le frottement est la force qui s'oppose au glissement entre deux surfaces en contact."},
+        {q:"Quelle est l'unité de la fréquence ?", options:["Le hertz","Le watt","Le joule","Le newton"], correct:0, explication:"La fréquence se mesure en hertz (Hz)."},
+        {q:"Quelle est la formule de la vitesse moyenne ?", options:["Vitesse = masse × temps","Vitesse = distance / temps","Vitesse = temps / distance","Vitesse = force / masse"], correct:1, explication:"La vitesse moyenne est le rapport de la distance parcourue sur le temps mis."},
+        {q:"Qu'est-ce qu'un atome neutre ?", options:["Un atome sans neutrons","Un atome ayant autant de protons que d'électrons","Un atome radioactif","Un atome sans noyau"], correct:1, explication:"Un atome est neutre lorsqu'il a autant de charges positives (protons) que négatives (électrons)."},
+        {q:"Quelle est la charge électrique d'un proton ?", options:["Négative","Positive","Nulle","Variable"], correct:1, explication:"Le proton porte une charge électrique positive."},
+        {q:"Quelle est la formule chimique du dioxyde de carbone ?", options:["CO","CO2","C2O","COO"], correct:1, explication:"Le dioxyde de carbone a pour formule CO2."},
+        {q:"Quelle unité désigne l'énergie électrique facturée par les compteurs ?", options:["Le joule","Le kilowattheure","L'ampère-heure","Le volt-seconde"], correct:1, explication:"L'énergie électrique domestique est facturée en kilowattheures (kWh)."},
+        {q:"Que dit la troisième loi de Newton ?", options:["Un corps au repos le reste sans force extérieure","À toute action correspond une réaction opposée de même intensité","La force est égale à la masse fois l'accélération","L'énergie se conserve toujours"], correct:1, explication:"La troisième loi de Newton énonce le principe des actions réciproques."},
+        {q:"Qu'est-ce qu'un isotope ?", options:["Un atome ionisé","Des atomes d'un même élément avec un nombre de neutrons différent","Une molécule instable","Un état excité de l'atome"], correct:1, explication:"Les isotopes d'un élément ont le même nombre de protons mais un nombre de neutrons différent."},
+        {q:"Quelle est la formule de la masse volumique ?", options:["Masse × volume","Masse / volume","Volume / masse","Masse + volume"], correct:1, explication:"La masse volumique est le rapport de la masse sur le volume."},
+        {q:"Comment appelle-t-on le passage direct de l'état solide à l'état gazeux ?", options:["La fusion","La vaporisation","La sublimation","La condensation"], correct:2, explication:"La sublimation est le passage direct de l'état solide à l'état gazeux."},
+        {q:"Quelle est la formule de l'énergie cinétique ?", options:["mgh","½mv²","mc²","F × d"], correct:1, explication:"L'énergie cinétique d'un objet est ½mv², où v est sa vitesse."},
+        {q:"Quelle est l'unité de la quantité de matière ?", options:["Le gramme","La mole","Le litre","L'atome"], correct:1, explication:"La quantité de matière se mesure en moles (mol)."},
+        {q:"Qu'est-ce qu'un acide en chimie ?", options:["Une substance qui libère des ions H+ en solution","Une substance toujours corrosive","Un composé sans hydrogène","Une base forte"], correct:0, explication:"Un acide est une substance capable de libérer des ions H+ en solution aqueuse."},
+        {q:"Quelle est la formule du chlorure de sodium, le sel de cuisine ?", options:["NaCl","NaOH","KCl","CaCl2"], correct:0, explication:"Le sel de cuisine a pour formule chimique NaCl."},
+        {q:"Quelle est la différence entre chaleur et température ?", options:["Ce sont des synonymes","La chaleur est un transfert d'énergie, la température mesure l'agitation thermique","La température se mesure en joules","La chaleur ne dépend jamais de la masse"], correct:1, explication:"La chaleur est un transfert d'énergie thermique, la température reflète l'agitation moyenne des particules."}
+      ],
+      difficile:[
+        {q:"Quelle est l'unité de l'énergie dans le Système International ?", options:["Le watt","Le joule","Le newton","L'ampère"], correct:1, explication:"L'énergie se mesure en joules (J)."},
+        {q:"Quel type de réaction chimique libère de la chaleur ?", options:["Endothermique","Exothermique","Catalytique","Réversible"], correct:1, explication:"Une réaction exothermique libère de l'énergie sous forme de chaleur."},
+        {q:"Quelle particule porte une charge électrique négative dans l'atome ?", options:["Le proton","Le neutron","L'électron","Le noyau"], correct:2, explication:"L'électron porte une charge électrique négative."},
+        {q:"Quelle est la formule de l'énergie potentielle de pesanteur ?", options:["½mv²","mgh","mc²","F/m"], correct:1, explication:"L'énergie potentielle de pesanteur est mgh, où h est la hauteur."},
+        {q:"À quoi correspond la constante de Planck ?", options:["Une constante reliant l'énergie d'un photon à sa fréquence","La vitesse de la lumière","La charge de l'électron","La masse d'un proton"], correct:0, explication:"La constante de Planck relie l'énergie d'un photon à sa fréquence (E = hf)."},
+        {q:"Quelle est l'unité de la résistance électrique ?", options:["Le volt","L'ampère","L'ohm","Le farad"], correct:2, explication:"La résistance électrique se mesure en ohms (Ω)."},
+        {q:"Qu'est-ce qu'une réaction d'oxydoréduction ?", options:["Une réaction sans transfert d'énergie","Une réaction avec transfert d'électrons entre espèces","Une réaction uniquement acide-base","Une réaction toujours explosive"], correct:1, explication:"Une réaction d'oxydoréduction implique un transfert d'électrons entre un oxydant et un réducteur."},
+        {q:"Quelle loi relie pression, volume et température d'un gaz parfait ?", options:["La loi d'Ohm","La loi des gaz parfaits (PV = nRT)","La loi de Coulomb","La loi de Hooke"], correct:1, explication:"La loi des gaz parfaits relie pression, volume, quantité de matière et température."},
+        {q:"Qu'est-ce que la demi-vie d'un élément radioactif ?", options:["Le temps total de désintégration","Le temps pour que la moitié des noyaux se désintègrent","La moitié de sa masse initiale","Le temps de formation de l'élément"], correct:1, explication:"La demi-vie est la durée nécessaire pour que la moitié des noyaux radioactifs se désintègrent."},
+        {q:"Quelle est l'unité du champ magnétique ?", options:["Le tesla","Le farad","L'ohm","Le henry"], correct:0, explication:"Le champ magnétique se mesure en teslas (T)."},
+        {q:"Qu'est-ce qu'un catalyseur ?", options:["Une substance qui ralentit une réaction","Une substance qui accélère une réaction sans être consommée","Un produit final de la réaction","Un solvant universel"], correct:1, explication:"Un catalyseur accélère une réaction chimique sans être consommé par celle-ci."},
+        {q:"Quelle est la relation entre fréquence et longueur d'onde d'une onde ?", options:["Elles sont égales","Elles sont inversement proportionnelles (v = λf)","Elles sont indépendantes","Elles sont proportionnelles au carré"], correct:1, explication:"La vitesse d'une onde est le produit de sa fréquence par sa longueur d'onde : v = λf."},
+        {q:"Qu'est-ce que l'effet Doppler ?", options:["Un changement de couleur de la lumière uniquement","La variation de fréquence perçue selon le mouvement relatif de la source","Une réflexion totale d'une onde","Un phénomène propre aux solides"], correct:1, explication:"L'effet Doppler décrit le changement de fréquence perçu quand la source et l'observateur sont en mouvement relatif."},
+        {q:"Quelle est la formule de la loi de Coulomb ?", options:["F = ma","F = k·q1·q2/r²","F = mgh","F = qE"], correct:1, explication:"La loi de Coulomb donne la force entre deux charges : F = k·q1·q2/r²."},
+        {q:"Qu'est-ce qu'un semi-conducteur ?", options:["Un matériau parfaitement isolant","Un matériau dont la conductivité est intermédiaire entre isolant et conducteur","Un métal pur","Un gaz ionisé"], correct:1, explication:"Un semi-conducteur a une conductivité électrique intermédiaire, modulable selon les conditions."},
+        {q:"Quelle est l'unité de la capacité électrique ?", options:["L'ohm","Le farad","Le henry","Le tesla"], correct:1, explication:"La capacité électrique se mesure en farads (F)."},
+        {q:"Que mesure l'entropie en thermodynamique ?", options:["La température absolue","Le désordre d'un système","La masse d'un système","La vitesse des particules"], correct:1, explication:"L'entropie est une mesure du désordre ou de l'agitation microscopique d'un système."},
+        {q:"Quelle est la différence entre fission et fusion nucléaire ?", options:["Il n'y a pas de différence","La fission scinde un noyau lourd, la fusion combine des noyaux légers","La fusion se produit seulement dans les réacteurs","La fission ne libère pas d'énergie"], correct:1, explication:"La fission divise un noyau lourd en noyaux plus légers, la fusion combine des noyaux légers en un plus lourd."},
+        {q:"Qu'est-ce qu'une onde électromagnétique ?", options:["Une onde nécessitant un support matériel","Une onde combinant champs électrique et magnétique, sans support matériel nécessaire","Une onde uniquement sonore","Une onde qui ne se propage pas dans le vide"], correct:1, explication:"Une onde électromagnétique se propage dans le vide en combinant un champ électrique et un champ magnétique."},
+        {q:"Que dit le principe d'inertie (première loi de Newton) ?", options:["Un corps accélère toujours librement","Un corps reste au repos ou en mouvement rectiligne uniforme si aucune force ne s'exerce sur lui","La masse d'un corps varie avec sa vitesse","Toute force produit une accélération infinie"], correct:1, explication:"Le principe d'inertie énonce qu'un corps conserve son état de mouvement en l'absence de force extérieure."}
+      ]
+    }},
+  {id:106, cat:'eco', type:'qcm', titre:"QCM Actualités BF — Économie Nationale",
+    desc:"Questions d'économie générale et de connaissances économiques régionales.",
+    astuce:"Reliez chaque notion à un exemple concret de l'économie burkinabè.",
+    banque:{
+      facile:[
+        {q:"Quelle est la monnaie utilisée au Burkina Faso ?", options:["Le cedi","Le franc CFA","Le naira","Le dollar"], correct:1, explication:"Le Burkina Faso utilise le franc CFA (XOF), monnaie commune de l'UEMOA."},
+        {q:"Que désigne « l'offre » en économie ?", options:["La demande des consommateurs","La quantité de biens proposée sur le marché","Le prix d'un bien","Le revenu d'un ménage"], correct:1, explication:"L'offre désigne la quantité de biens ou services proposée sur le marché."},
+        {q:"Quelle institution gère la monnaie commune de l'UEMOA ?", options:["La Banque mondiale","La BCEAO","Le FMI","La CEDEAO"], correct:1, explication:"La BCEAO émet et gère le franc CFA de l'UEMOA."},
+        {q:"Que désigne la « demande » en économie ?", options:["La quantité de biens produite","La quantité de biens que les consommateurs souhaitent acheter","Le coût de production","Le taux de change"], correct:1, explication:"La demande représente la quantité qu'un consommateur est prêt à acheter à un prix donné."},
+        {q:"Qu'est-ce qu'un marché en économie ?", options:["Un simple lieu de vente physique","Un lieu, réel ou virtuel, de rencontre entre l'offre et la demande","Une banque centrale","Un impôt"], correct:1, explication:"Un marché est le lieu où se rencontrent offreurs et demandeurs pour échanger un bien ou service."},
+        {q:"Qu'est-ce qu'un salaire ?", options:["Un impôt payé par l'employeur","La rémunération du travail","Un prêt bancaire","Une taxe sur la consommation"], correct:1, explication:"Le salaire est la rémunération versée en contrepartie d'un travail."},
+        {q:"Qu'est-ce qu'une entreprise ?", options:["Une administration publique uniquement","Une organisation qui produit des biens ou services","Un syndicat de travailleurs","Une banque centrale"], correct:1, explication:"Une entreprise est une organisation qui produit des biens ou des services, généralement à but lucratif."},
+        {q:"Qu'est-ce qu'un impôt ?", options:["Un prêt remboursable","Un prélèvement obligatoire au profit de l'État","Un salaire versé par l'État","Une aide financière volontaire"], correct:1, explication:"L'impôt est un prélèvement obligatoire destiné à financer les dépenses publiques."},
+        {q:"Qu'est-ce que l'épargne ?", options:["La totalité du revenu perçu","La partie du revenu non consommée","Un crédit bancaire","Le prix d'un bien"], correct:1, explication:"L'épargne correspond à la part du revenu qui n'est pas dépensée en consommation."},
+        {q:"Qu'est-ce qu'un consommateur ?", options:["Une personne qui produit des biens","Une personne qui achète des biens ou services","Une banque","Un État"], correct:1, explication:"Le consommateur est l'agent économique qui achète des biens et services pour les utiliser."},
+        {q:"Qu'est-ce que le commerce ?", options:["La fabrication de biens uniquement","L'échange de biens ou services contre rémunération","Un impôt sur les ventes","Un type de monnaie"], correct:1, explication:"Le commerce désigne l'activité d'échange de biens ou de services contre paiement."},
+        {q:"Qu'est-ce qu'un prix ?", options:["La quantité produite d'un bien","La valeur monétaire d'un bien ou service","Le revenu d'un ménage","Le taux d'intérêt"], correct:1, explication:"Le prix est la valeur en monnaie attribuée à un bien ou un service sur un marché."},
+        {q:"Qu'est-ce que le chômage ?", options:["Le fait de travailler à temps partiel","La situation d'une personne sans emploi qui en cherche un","Un congé payé","Une baisse de salaire"], correct:1, explication:"Le chômage désigne la situation des personnes sans emploi et à la recherche active d'un travail."},
+        {q:"Qu'est-ce qu'un budget ?", options:["Un contrat de travail","Un document prévisionnel des recettes et dépenses","Une taxe sur les importations","Un prêt bancaire"], correct:1, explication:"Un budget prévoit les recettes et les dépenses sur une période donnée."},
+        {q:"Qu'est-ce qu'une banque ?", options:["Une entreprise de production agricole","Une institution qui gère l'épargne et le crédit","Un syndicat","Un ministère"], correct:1, explication:"Une banque collecte l'épargne et accorde des crédits aux particuliers et entreprises."},
+        {q:"Qu'est-ce qu'un revenu ?", options:["Une dépense ponctuelle","Une somme perçue régulièrement (salaire, profit...)","Un impôt payé","Une dette"], correct:1, explication:"Le revenu est une somme perçue régulièrement par un agent économique."},
+        {q:"Qu'est-ce que l'importation ?", options:["La vente de biens à l'étranger","L'achat de biens produits à l'étranger","La production locale de biens","Un impôt douanier uniquement"], correct:1, explication:"L'importation consiste à acheter des biens ou services produits à l'étranger."},
+        {q:"Qu'est-ce que l'exportation ?", options:["L'achat de biens étrangers","La vente de biens produits localement à l'étranger","Un prêt international","Une taxe sur les salaires"], correct:1, explication:"L'exportation consiste à vendre à l'étranger des biens produits localement."},
+        {q:"Qu'est-ce qu'un crédit ?", options:["Un don sans contrepartie","Une somme prêtée à rembourser avec intérêt","Un salaire mensuel","Un impôt sur le revenu"], correct:1, explication:"Le crédit est une somme d'argent prêtée qui doit être remboursée, généralement avec intérêt."},
+        {q:"Qu'est-ce qu'un investissement ?", options:["Une dépense de consommation immédiate","Une dépense destinée à accroître la capacité de production future","Un simple don","Une taxe locale"], correct:1, explication:"L'investissement est une dépense visant à accroître les capacités de production futures."}
+      ],
+      moyen:[
+        {q:"Qu'est-ce que l'inflation ?", options:["Une baisse générale des prix","Une hausse générale et durable des prix","Une hausse des salaires","Une baisse du chômage"], correct:1, explication:"L'inflation est une hausse générale et durable du niveau des prix."},
+        {q:"Quel secteur regroupe l'agriculture et l'élevage ?", options:["Le secteur primaire","Le secteur secondaire","Le secteur tertiaire","Le secteur informel"], correct:0, explication:"Le secteur primaire regroupe les activités liées aux ressources naturelles."},
+        {q:"Que mesure le PIB ?", options:["La dette d'un pays","La richesse créée par un pays sur une période donnée","Le nombre d'habitants","Le taux de chômage"], correct:1, explication:"Le PIB mesure la valeur des richesses produites sur une période donnée."},
+        {q:"Qu'est-ce que le taux de change ?", options:["Le taux d'intérêt d'un prêt","Le prix d'une monnaie exprimé dans une autre monnaie","Le taux d'inflation annuel","Le taux de TVA"], correct:1, explication:"Le taux de change indique combien d'unités d'une monnaie il faut pour obtenir une unité d'une autre."},
+        {q:"Qu'est-ce que la croissance économique ?", options:["La baisse de la production","L'augmentation de la production sur une période donnée","La hausse du chômage","La stabilité des prix"], correct:1, explication:"La croissance économique désigne l'augmentation de la production de richesses dans le temps."},
+        {q:"Que regroupe le secteur secondaire ?", options:["L'agriculture","Les activités de transformation (industrie)","Les services","Le commerce international"], correct:1, explication:"Le secteur secondaire regroupe les activités industrielles de transformation."},
+        {q:"Que regroupe le secteur tertiaire ?", options:["L'agriculture","L'industrie lourde","Les activités de services","L'extraction minière"], correct:2, explication:"Le secteur tertiaire regroupe les activités de services (commerce, santé, éducation...)."},
+        {q:"Qu'est-ce qu'un monopole ?", options:["Un marché avec de nombreux offreurs","Un marché avec un seul offreur","Un marché sans échanges","Une monnaie unique"], correct:1, explication:"Un monopole est un marché dominé par un seul offreur, sans concurrence directe."},
+        {q:"Qu'est-ce que la concurrence pure et parfaite ?", options:["Un marché avec un seul vendeur","Un marché avec de nombreux offreurs et demandeurs, sans pouvoir de marché","Un marché fermé aux nouveaux entrants","Un marché réservé à l'État"], correct:1, explication:"Elle suppose une multitude d'acteurs sans pouvoir individuel d'influencer le prix."},
+        {q:"Qu'est-ce que le taux d'intérêt ?", options:["Le prix d'un bien de consommation","Le prix de l'argent prêté ou emprunté","Le taux d'imposition","Le taux de chômage"], correct:1, explication:"Le taux d'intérêt représente le coût ou la rémunération de l'argent prêté ou emprunté."},
+        {q:"Qu'est-ce que la dette publique ?", options:["L'argent que l'État verse aux ménages","L'ensemble des emprunts contractés par l'État","Le budget annuel de l'État","Les impôts collectés par l'État"], correct:1, explication:"La dette publique est le cumul des emprunts contractés par l'État pour financer ses dépenses."},
+        {q:"Qu'est-ce que la déflation ?", options:["Une hausse générale des prix","Une baisse générale et durable des prix","Une stabilité des prix","Une hausse du PIB"], correct:1, explication:"La déflation est une baisse générale et durable du niveau des prix, à l'opposé de l'inflation."},
+        {q:"Qu'est-ce qu'un cartel en économie ?", options:["Une entreprise publique","Une entente entre entreprises pour limiter la concurrence","Un type de monnaie","Une taxe douanière"], correct:1, explication:"Un cartel regroupe des entreprises qui s'entendent pour limiter la concurrence entre elles."},
+        {q:"Qu'est-ce que le pouvoir d'achat ?", options:["Le montant total des impôts payés","La quantité de biens que l'on peut acheter avec un revenu donné","Le taux de chômage d'un pays","La valeur d'une entreprise"], correct:1, explication:"Le pouvoir d'achat mesure la quantité de biens et services accessible avec un revenu donné."},
+        {q:"Qu'est-ce qu'une subvention ?", options:["Un impôt supplémentaire","Une aide financière versée par l'État","Un prêt bancaire privé","Une taxe à l'exportation"], correct:1, explication:"Une subvention est une aide financière accordée par l'État à un agent économique."},
+        {q:"Qu'est-ce que la balance des paiements ?", options:["Le budget de l'État","Un document comptabilisant les échanges d'un pays avec l'étranger","La dette publique totale","Le taux de change officiel"], correct:1, explication:"La balance des paiements enregistre l'ensemble des transactions économiques d'un pays avec le reste du monde."},
+        {q:"Comment se calcule le taux de chômage ?", options:["Le nombre total d'habitants sans emploi","Le pourcentage de la population active sans emploi","Le nombre d'entreprises en faillite","Le montant des salaires versés"], correct:1, explication:"Le taux de chômage est le rapport entre le nombre de chômeurs et la population active."},
+        {q:"Qu'est-ce que la politique budgétaire ?", options:["La gestion des taux de change","L'utilisation des dépenses et recettes publiques pour agir sur l'économie","La fixation du taux directeur","La réglementation bancaire uniquement"], correct:1, explication:"La politique budgétaire utilise les dépenses et recettes de l'État pour influencer l'activité économique."},
+        {q:"Qu'est-ce qu'un oligopole ?", options:["Un marché avec un seul offreur","Un marché avec un petit nombre d'offreurs","Un marché avec une infinité d'offreurs","Un marché sans concurrence possible"], correct:1, explication:"Un oligopole est un marché dominé par un petit nombre d'entreprises."},
+        {q:"Qu'est-ce que le revenu national ?", options:["Le revenu d'une seule entreprise","La somme des revenus perçus par les résidents d'un pays","Le budget de l'État","La dette extérieure d'un pays"], correct:1, explication:"Le revenu national regroupe l'ensemble des revenus perçus par les résidents d'un pays sur une période donnée."}
+      ],
+      difficile:[
+        {q:"Qu'est-ce que la balance commerciale d'un pays ?", options:["La différence entre exportations et importations","Le budget de l'État","La masse monétaire en circulation","Le taux d'intérêt directeur"], correct:0, explication:"C'est la différence entre la valeur des exportations et des importations."},
+        {q:"Que désigne le terme « microéconomie » ?", options:["L'étude des agrégats nationaux","L'étude des comportements individuels des agents économiques","L'étude du commerce international","L'étude de la politique monétaire"], correct:1, explication:"La microéconomie étudie les décisions individuelles des ménages et entreprises."},
+        {q:"Que vise une politique monétaire restrictive ?", options:["Stimuler l'inflation","Réduire l'inflation en limitant la masse monétaire","Augmenter les salaires","Supprimer les impôts"], correct:1, explication:"Elle vise à freiner l'inflation en limitant la création monétaire."},
+        {q:"Que dit la théorie des avantages comparatifs ?", options:["Chaque pays doit produire tout lui-même","Chaque pays gagne à se spécialiser dans ce qu'il produit relativement mieux","Le commerce international est toujours néfaste","Seuls les pays riches profitent du commerce"], correct:1, explication:"Selon cette théorie, la spécialisation selon l'avantage comparatif profite à tous les pays participant à l'échange."},
+        {q:"Qu'est-ce que la stagflation ?", options:["Une forte croissance sans inflation","Une situation combinant stagnation économique et inflation","Une baisse générale des prix","Une croissance stable et modérée"], correct:1, explication:"La stagflation combine une croissance faible (ou nulle) et une inflation élevée."},
+        {q:"Qu'est-ce que le multiplicateur keynésien ?", options:["Un indice boursier","L'effet amplifié d'une dépense publique sur le revenu national","Le taux de change officiel","Un impôt sur les grandes entreprises"], correct:1, explication:"Le multiplicateur keynésien mesure l'effet amplifié d'une dépense sur le revenu global de l'économie."},
+        {q:"Qu'est-ce qu'une externalité négative ?", options:["Un bénéfice partagé par tous","Un coût subi par un tiers non compensé par le marché","Une subvention de l'État","Une taxe à l'importation"], correct:1, explication:"Une externalité négative est un coût imposé à un tiers sans compensation prévue par le marché (ex. pollution)."},
+        {q:"Qu'est-ce que le taux directeur d'une banque centrale ?", options:["Le taux d'imposition des entreprises","Le taux d'intérêt qu'elle applique aux banques commerciales","Le taux de change officiel","Le taux de croissance visé"], correct:1, explication:"Le taux directeur est le taux auquel la banque centrale prête aux banques commerciales."},
+        {q:"Que décrit la courbe de Phillips ?", options:["La relation entre offre et demande","Une relation observée entre inflation et chômage","La croissance du PIB dans le temps","L'évolution du taux de change"], correct:1, explication:"La courbe de Phillips illustre une relation, historiquement observée, entre le niveau d'inflation et le taux de chômage."},
+        {q:"Qu'est-ce que l'élasticité-prix de la demande ?", options:["Le prix fixe d'un bien","La sensibilité de la quantité demandée à une variation de prix","Le coût de production d'un bien","La marge bénéficiaire d'une entreprise"], correct:1, explication:"L'élasticité-prix mesure de combien varie la demande lorsque le prix change."},
+        {q:"Que représente le PIB par habitant ?", options:["Le PIB total d'un pays","Le PIB divisé par la population d'un pays","Le revenu moyen d'une entreprise","La dette par habitant"], correct:1, explication:"Le PIB par habitant rapporte la richesse produite au nombre d'habitants, pour comparer les niveaux de vie."},
+        {q:"Qu'est-ce qu'une dévaluation ?", options:["Une hausse volontaire de la valeur d'une monnaie","La baisse volontaire de la valeur d'une monnaie par rapport à une autre","Une interdiction d'exporter","Une hausse des taux d'intérêt"], correct:1, explication:"La dévaluation est une décision officielle de réduire la valeur d'une monnaie par rapport à d'autres devises."},
+        {q:"Qu'est-ce que le capital humain ?", options:["Le capital financier d'une entreprise","L'ensemble des compétences et connaissances productives des individus","La valeur des machines d'une usine","Le nombre d'employés d'une entreprise"], correct:1, explication:"Le capital humain désigne les compétences, l'éducation et l'expérience qui rendent les individus productifs."},
+        {q:"Que dit la loi de l'offre et de la demande ?", options:["Le prix est toujours fixé par l'État","Le prix s'ajuste pour équilibrer quantité offerte et demandée","L'offre est toujours supérieure à la demande","Le prix ne dépend jamais des quantités"], correct:1, explication:"Cette loi énonce que le prix d'équilibre s'ajuste jusqu'à égaliser l'offre et la demande."},
+        {q:"Qu'est-ce que le protectionnisme ?", options:["Une politique de libre-échange total","Une politique visant à limiter les importations pour protéger l'économie nationale","Une aide financière aux pays voisins","Une politique de change fixe"], correct:1, explication:"Le protectionnisme regroupe les mesures visant à limiter la concurrence étrangère (droits de douane, quotas...)."},
+        {q:"Qu'est-ce que le libre-échange ?", options:["Une interdiction du commerce international","Une politique commerciale sans barrières douanières entre pays","Une monnaie commune obligatoire","Une taxe unique mondiale"], correct:1, explication:"Le libre-échange désigne l'absence de barrières douanières entre pays partenaires."},
+        {q:"Que relie la théorie quantitative de la monnaie ?", options:["Le taux de chômage et l'inflation","La masse monétaire et le niveau général des prix","Le PIB et la population","Les taux d'intérêt et le commerce extérieur"], correct:1, explication:"Cette théorie relie la quantité de monnaie en circulation au niveau général des prix."},
+        {q:"Qu'est-ce qu'un bien public en économie ?", options:["Un bien vendu uniquement par l'État","Un bien non exclusif et non rival dont chacun peut bénéficier","Un bien de luxe","Un bien produit uniquement à l'étranger"], correct:1, explication:"Un bien public est non exclusif (personne n'en est exclu) et non rival (sa consommation par un agent n'empêche pas celle d'un autre)."},
+        {q:"Qu'est-ce que le seuil de rentabilité d'une entreprise ?", options:["Son chiffre d'affaires maximal","Le niveau d'activité à partir duquel elle couvre ses coûts","Sa dette totale","Son nombre d'employés minimal"], correct:1, explication:"Le seuil de rentabilité est le niveau d'activité où les revenus couvrent exactement les coûts."},
+        {q:"Que désigne la mondialisation économique ?", options:["La fermeture des économies nationales","L'intégration croissante des économies nationales dans un système mondial","Une politique purement locale","Une monnaie unique mondiale obligatoire"], correct:1, explication:"La mondialisation désigne l'interconnexion croissante des économies à l'échelle mondiale."}
+      ]
+    }},
+  {id:107, cat:'droit', type:'qcm', titre:"QCM Actualités BF — Réformes & Justice",
+    desc:"Questions sur les grands principes du droit et des institutions.",
+    astuce:"Distinguez bien les trois pouvoirs et leurs rôles respectifs.",
+    banque:{
+      facile:[
+        {q:"Quel texte organise les pouvoirs publics d'un État ?", options:["Le code civil","La Constitution","Le code pénal","Le règlement intérieur"], correct:1, explication:"La Constitution organise les institutions et pouvoirs publics."},
+        {q:"Combien de pouvoirs classiques compose la séparation des pouvoirs ?", options:["Deux","Trois","Quatre","Cinq"], correct:1, explication:"Elle distingue le pouvoir exécutif, législatif et judiciaire."},
+        {q:"Qui rend la justice au sein de l'État ?", options:["Le pouvoir exécutif","Le pouvoir législatif","Le pouvoir judiciaire","Les collectivités locales"], correct:2, explication:"Le pouvoir judiciaire est chargé de rendre la justice."}
+      ],
+      moyen:[
+        {q:"Qu'est-ce qu'une personne morale en droit ?", options:["Une personne physique uniquement","Une entité dotée de droits et d'obligations","Un simple contrat","Un acte administratif"], correct:1, explication:"Une personne morale (société, association, État…) a des droits et obligations."},
+        {q:"Quel texte publie officiellement les lois d'un pays ?", options:["Le Journal Officiel","Un communiqué de presse","Un rapport parlementaire","Une note de service"], correct:0, explication:"Le Journal Officiel publie les textes pour leur entrée en vigueur."},
+        {q:"Que désigne le « droit civil » ?", options:["Le droit qui régit les relations entre particuliers","Le droit qui punit les infractions","Le droit international","Le droit du travail"], correct:0, explication:"Le droit civil régit les rapports entre personnes privées."}
+      ],
+      difficile:[
+        {q:"Qu'est-ce que le contrôle de constitutionnalité ?", options:["La vérification qu'une loi respecte la Constitution","Le contrôle des comptes de l'État","La supervision des élections","Le contrôle des douanes"], correct:0, explication:"Il vérifie qu'une loi est conforme à la Constitution."},
+        {q:"Qu'est-ce qu'une ordonnance en droit public ?", options:["Un jugement du tribunal","Un acte de l'exécutif dans un domaine réservé à la loi","Un acte purement local","Un simple avis consultatif"], correct:1, explication:"Elle permet à l'exécutif de légiférer temporairement, sous conditions."},
+        {q:"Qu'est-ce que la hiérarchie des normes ?", options:["Le classement des juges par ancienneté","L'ordre de priorité entre les sources du droit","La liste des tribunaux d'un pays","Le calendrier judiciaire"], correct:1, explication:"Elle organise la priorité entre Constitution, lois, règlements, etc."}
+      ]
+    }},
+  {id:108, cat:'culture', type:'qcm', titre:"QCM Actualités BF — Culture Générale",
+    desc:"Questions générales de culture et de symboles nationaux, idéales pour les concours directs.",
+    astuce:"Créez des fiches courtes pour chaque symbole ou repère culturel.",
+    banque:{
+      facile:[
+        {q:"Quelle est la langue officielle du Burkina Faso ?", options:["L'anglais","Le français","L'arabe","Le portugais"], correct:1, explication:"Le français est la langue officielle du Burkina Faso."},
+        {q:"Quel festival de cinéma panafricain se tient à Ouagadougou ?", options:["Le FESPACO","Le FESPAM","Le MASA","Le FIFDA"], correct:0, explication:"Le FESPACO est un événement culturel majeur du continent."},
+        {q:"Combien de couleurs compte le drapeau du Burkina Faso ?", options:["Deux","Trois","Quatre","Cinq"], correct:1, explication:"Le drapeau comporte le rouge, le vert et une étoile jaune."}
+      ],
+      moyen:[
+        {q:"Que signifie la devise « Unité - Progrès - Justice » ?", options:["Un slogan commercial","La devise nationale du Burkina Faso","Un hymne régional","Un proverbe local"], correct:1, explication:"C'est la devise nationale du Burkina Faso."},
+        {q:"Quel est l'hymne national du Burkina Faso ?", options:["La Marseillaise","Le Ditanyè","L'Abidjanaise","Nkosi Sikelel'"], correct:1, explication:"« Le Ditanyè » est l'hymne national du Burkina Faso."},
+        {q:"Quel artisanat traditionnel est emblématique du pays ?", options:["Le tissage du faso dan fani","La porcelaine","La joaillerie de diamant","La verrerie soufflée"], correct:0, explication:"Le faso dan fani est un tissage traditionnel emblématique."}
+      ],
+      difficile:[
+        {q:"Quel est le sens du nom « Burkina Faso » ?", options:["Pays des hommes intègres","Terre des grands fleuves","Pays du soleil levant","Terre des ancêtres"], correct:0, explication:"« Burkina Faso » signifie « le pays des hommes intègres »."},
+        {q:"Quelle ville est considérée comme la capitale économique du pays ?", options:["Ouagadougou","Bobo-Dioulasso","Koudougou","Ouahigouya"], correct:1, explication:"Bobo-Dioulasso est souvent considérée comme la capitale économique."},
+        {q:"Quel groupe ethnique est majoritaire au Burkina Faso ?", options:["Les Mossé","Les Peuls","Les Bobo","Les Touaregs"], correct:0, explication:"Les Mossé constituent le groupe ethnique le plus nombreux du pays."}
+      ]
+    }},
+  {id:109, cat:'actu', type:'qcm', titre:"QCM Actualités BF — Actualité Générale",
+    desc:"Questions générales de vie civique et de repères internationaux utiles pour les entretiens.",
+    astuce:"Lisez un résumé de l'actualité une fois par semaine pour rester à jour.",
+    banque:{
+      facile:[
+        {q:"Quel organe régional regroupe des pays ouest-africains partageant le franc CFA ?", options:["L'UEMOA","L'Union européenne","L'ONU","L'OTAN"], correct:0, explication:"L'UEMOA regroupe huit pays d'Afrique de l'Ouest, dont le Burkina Faso."},
+        {q:"De quel continent le Burkina Faso fait-il partie ?", options:["L'Asie","L'Afrique","L'Amérique du Sud","L'Océanie"], correct:1, explication:"Le Burkina Faso est un pays d'Afrique de l'Ouest."},
+        {q:"Quel régime politique implique l'élection des dirigeants par le peuple ?", options:["La monarchie absolue","La démocratie","La dictature","L'oligarchie"], correct:1, explication:"La démocratie repose sur l'élection des dirigeants par les citoyens."}
+      ],
+      moyen:[
+        {q:"Quel organisme des Nations Unies s'occupe de l'éducation et de la culture ?", options:["L'UNESCO","L'OMS","Le FMI","La FAO"], correct:0, explication:"L'UNESCO est l'organisation des Nations Unies pour l'éducation, la science et la culture."},
+        {q:"Que désigne « l'intégration régionale » en Afrique de l'Ouest ?", options:["La fusion complète des pays en un seul État","Le rapprochement économique et politique entre pays voisins","La fermeture des frontières","La suppression des monnaies nationales"], correct:1, explication:"C'est le rapprochement économique, politique ou monétaire entre pays voisins."},
+        {q:"Qu'est-ce que la société civile ?", options:["Le gouvernement uniquement","L'ensemble des associations et citoyens organisés","L'armée","Le pouvoir judiciaire"], correct:1, explication:"Elle regroupe les associations, ONG et citoyens agissant hors de l'État."}
+      ],
+      difficile:[
+        {q:"Quel principe désigne le droit d'un peuple à choisir librement son régime politique ?", options:["La souveraineté nationale","Le protectionnisme","Le fédéralisme","La colonisation"], correct:0, explication:"La souveraineté nationale permet à un peuple de choisir librement ses institutions."},
+        {q:"Qu'est-ce qu'une transition politique ?", options:["Un changement de saison","Une période intermédiaire avant le retour à un ordre constitutionnel stable","Un traité commercial","Une réforme scolaire"], correct:1, explication:"C'est une période intermédiaire de gouvernance avant un cadre constitutionnel stable."},
+        {q:"Qu'est-ce que le panafricanisme ?", options:["Un mouvement prônant l'unité des peuples africains","Un traité européen","Une religion","Un parti unique"], correct:0, explication:"C'est un mouvement politique et culturel prônant l'unité entre peuples africains."}
+      ]
+    }}
+];
+
+const catColor = c => PALETTE.includes(c) ? `var(--${c})` : 'var(--teal)';
+const catSoft = c => PALETTE.includes(c) ? `var(--${c}-soft)` : 'var(--teal-soft)';
+
+/* ---------------- Rendu des catégories ---------------- */
+function renderCategories(targetId){
+  const el = document.getElementById(targetId);
+  el.innerHTML = CATEGORIES.map(c => `
+    <div class="cat-card" onclick="openCategory('${c.id}')">
+      ${isAdmin ? `<button class="cat-edit" onclick="event.stopPropagation(); openCategoryModal('${c.id}')" aria-label="Modifier">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      </button>` : ''}
+      <div class="cat-ic" style="background:${catColor(c.color)}">${ICONS[c.icon] || ICONS.etoile}</div>
+      <h4>${c.nom}</h4>
+      <p>${c.desc}</p>
+    </div>
+  `).join('') + (isAdmin ? `
+    <div class="cat-card cat-add" onclick="openCategoryModal(null)">
+      <div class="cat-ic cat-add-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+      <h4>Ajouter une matière</h4>
+      <p>Créer un nouveau sujet de révision</p>
+    </div>
+  ` : '');
+}
+
+/* ---------------- Carte formation (liste) ---------------- */
+function formationCardHTML(f){
+  const c = CATEGORIES.find(x => x.id === f.cat);
+  if(f.type === 'qcm'){
+    const totalQ = ['facile','moyen','difficile'].reduce((s,k) => s + (f.banque[k] ? f.banque[k].length : 0), 0);
+    return `
+      <div class="form-card" onclick="openQcm(${f.id})">
+        <div class="form-thumb" style="background:${catColor(c.color)}"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#fff" stroke-width="1.6"/><path d="M9.3 9.6a2.7 2.7 0 0 1 5.2.9c0 1.8-2.5 1.9-2.5 3.8" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="17.2" r="0.9" fill="#fff"/></svg></div>
+        <div class="form-info">
+          <h4>${f.titre}</h4>
+          <div class="form-meta">
+            <span>${totalQ} questions</span><span class="dot"></span>
+            <span class="badge-free">QCM</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+  return `
+    <div class="form-card" onclick="openDetail(${f.id})">
+      <div class="form-thumb" style="background:${catColor(c.color)}">${ICONS[c.icon] || ICONS.etoile}</div>
+      <div class="form-info">
+        <h4>${f.titre}</h4>
+        <div class="form-meta">
+          <span>${f.duree}</span><span class="dot"></span>
+          <span class="badge-level">${f.niveau}</span>
+          ${f.gratuit ? '<span class="badge-free">Gratuit</span>' : ''}
+        </div>
+        ${f.progression > 0 ? `<div class="mini-progress"><i style="width:${f.progression}%; background:${catColor(c.color)}"></i></div>` : ''}
+      </div>
+    </div>
+  `;
+}
+
+/* ---------------- Ouvrir un QCM ---------------- */
+const LEVELS_META = {
+  facile: {label:'Facile', emoji:'🙂', color:'teal'},
+  moyen: {label:'Moyen', emoji:'😐', color:'amber'},
+  difficile: {label:'Difficile', emoji:'😵', color:'brick'}
+};
+
+function openQcm(id){
+  const f = FORMATIONS.find(x => x.id === id);
+  const c = CATEGORIES.find(x => x.id === f.cat);
+  document.getElementById('qcmHeader').style.background = `linear-gradient(120deg, ${catColor(c.color)} 0%, var(--ink) 140%)`;
+  document.getElementById('qcmHeader').innerHTML = `
+    <div class="top-row">
+      <button class="icon-btn" onclick="openCategory('${f.cat}')"><svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="hero-ic"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#fff" stroke-width="1.6"/><path d="M9.3 9.6a2.7 2.7 0 0 1 5.2.9c0 1.8-2.5 1.9-2.5 3.8" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="17.2" r="0.9" fill="#fff"/></svg></div>
+    </div>
+    <h1>${f.titre}</h1>
+    <p>${f.desc}</p>
+  `;
+  const keys = ['facile','moyen','difficile'];
+  const totalQ = keys.reduce((s,k) => s + f.banque[k].length, 0);
+  document.getElementById('qcmStats').innerHTML = `
+    <div class="stat"><span class="num">${totalQ}</span><span>Questions</span></div>
+    <div class="stat"><span class="num">${keys.length}</span><span>Niveaux</span></div>
+    <div class="stat"><span class="num">0</span><span>Score</span></div>
+  `;
+  document.getElementById('qcmLevels').innerHTML = keys.map(k => {
+    const meta = LEVELS_META[k];
+    const n = f.banque[k].length;
+    return `
+    <div class="level-row" onclick="openQuizPlay(${f.id},'${k}')">
+      <div class="level-emoji" style="background:${catSoft(meta.color)}">${meta.emoji}</div>
+      <div class="info">
+        <h4>${meta.label}</h4>
+        <p>${n} question${n>1?'s':''}</p>
+      </div>
+      <button class="level-play" style="background:${catColor(meta.color)}"><svg viewBox="0 0 24 24" fill="none"><path d="M7 5l11 7-11 7V5Z" fill="#fff"/></svg></button>
+    </div>
+  `;}).join('') + (isAdmin ? `
+    <button class="add-formation-btn" onclick="openAddQuestionModal(${f.id})">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke-width="2" stroke-linecap="round"/></svg>
+      Ajouter une question QCM
+    </button>
+  ` : '');
+  document.getElementById('qcmTip').innerHTML = `
+    <svg viewBox="0 0 24 24" fill="none"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3Z" stroke-width="1.6" stroke-linejoin="round"/></svg>
+    <div><b>Astuce</b><span>${f.astuce}</span></div>
+  `;
+  showScreen('screen-qcm');
+}
+
+/* ---------------- Passage du quiz ---------------- */
+let quizContext = null; // {formationId, niveau, questions}
+let quizAnswers = {};
+let quizSubmitted = false;
+
+function openQuizPlay(formationId, niveau){
+  const f = FORMATIONS.find(x => x.id === formationId);
+  quizContext = { formationId, niveau, questions: f.banque[niveau] };
+  quizAnswers = {};
+  quizSubmitted = false;
+  const meta = LEVELS_META[niveau];
+  const c = CATEGORIES.find(x => x.id === f.cat);
+  document.getElementById('quizHeader').style.background = `linear-gradient(120deg, ${catColor(meta.color)} 0%, var(--ink) 140%)`;
+  document.getElementById('quizHeader').innerHTML = `
+    <div class="top-row">
+      <button class="icon-btn" onclick="openQcm(${f.id})"><svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="hero-ic" style="font-size:20px;">${meta.emoji}</div>
+    </div>
+    <h1>${f.titre}</h1>
+    <p>Niveau ${meta.label} · ${quizContext.questions.length} question${quizContext.questions.length>1?'s':''}</p>
+  `;
+  renderQuiz();
+  showScreen('screen-quiz');
+}
+
+function renderQuiz(){
+  document.getElementById('quizScore').innerHTML = quizSubmitted ? scoreBannerHTML() : `<p style="font-size:12.5px; color:var(--ink-soft); margin:0 0 4px;">Cochez une réponse par question, puis validez pour voir votre score et les explications.</p>`;
+
+  document.getElementById('quizQuestions').innerHTML = quizContext.questions.map((q, qi) => {
+    const chosen = quizAnswers[qi];
+    return `
+      <div class="quiz-question-card">
+        <div class="eyebrow-q">Question ${qi+1} / ${quizContext.questions.length}</div>
+        <h4>${q.q}</h4>
+        ${q.options.map((opt, oi) => {
+          let cls = 'qz-option';
+          if(quizSubmitted){
+            cls += ' disabled';
+            if(oi === q.correct) cls += ' correct';
+            else if(oi === chosen) cls += ' incorrect';
+          } else if(chosen === oi){
+            cls += ' selected';
+          }
+          return `
+            <div class="${cls}" onclick="${quizSubmitted ? '' : `selectOption(${qi},${oi})`}">
+              <div class="dot"></div><span>${opt}</span>
+            </div>
+          `;
+        }).join('')}
+        ${quizSubmitted ? `
+          <div class="qz-explication">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3Z" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            <span>${q.explication}</span>
+          </div>
+        ` : ''}
+      </div>
+    `;
+  }).join('');
+
+  document.getElementById('quizFooter').innerHTML = quizSubmitted ? `
+    <button class="btn-outline" style="margin-bottom:10px;" onclick="resetQuiz()">Recommencer ce niveau</button>
+    <button class="btn-solid" onclick="openQcm(${quizContext.formationId})">Retour au QCM</button>
+  ` : `
+    <button class="btn-solid" onclick="submitQuiz()">Valider mes réponses</button>
+  `;
+}
+
+function selectOption(qIndex, oIndex){
+  quizAnswers[qIndex] = oIndex;
+  renderQuiz();
+}
+
+function submitQuiz(){
+  quizSubmitted = true;
+  renderQuiz();
+  document.getElementById('screen-quiz').scrollTop = 0;
+}
+
+function resetQuiz(){
+  quizAnswers = {};
+  quizSubmitted = false;
+  renderQuiz();
+  document.getElementById('screen-quiz').scrollTop = 0;
+}
+
+function scoreBannerHTML(){
+  const total = quizContext.questions.length;
+  let correct = 0;
+  quizContext.questions.forEach((q, qi) => { if(quizAnswers[qi] === q.correct) correct++; });
+  const pct = Math.round((correct/total)*100);
+  const msg = pct >= 80 ? "Excellent travail !" : pct >= 50 ? "Bon résultat, continuez !" : "Revoyez les explications ci-dessous.";
+  return `
+    <div class="quiz-score-banner">
+      <span class="num">${correct} / ${total}</span>
+      <p>${pct}% de bonnes réponses · ${msg}</p>
+    </div>
+  `;
+}
+let currentCatId = null;
+
+/* ---------------- Téléchargements hors ligne ---------------- */
+let downloadedIds = [];
+
+function toggleDownload(fid){
+  const i = downloadedIds.indexOf(fid);
+  if(i > -1) downloadedIds.splice(i, 1);
+  else downloadedIds.push(fid);
+  updateOfflineBadge();
+  const detailScreen = document.getElementById('screen-detail');
+  if(detailScreen && detailScreen.classList.contains('active')) openDetail(fid);
+  const dlScreen = document.getElementById('screen-downloads');
+  if(dlScreen && dlScreen.classList.contains('active')) renderDownloads();
+}
+
+function updateOfflineBadge(){
+  const el = document.getElementById('offlineCount');
+  if(el) el.textContent = downloadedIds.length > 0 ? `${downloadedIds.length} hors ligne` : 'Hors ligne';
+}
+
+function openDownloads(){
+  renderDownloads();
+  showScreen('screen-downloads');
+}
+
+function renderDownloads(){
+  const el = document.getElementById('downloadsList');
+  const items = FORMATIONS.filter(f => downloadedIds.includes(f.id));
+  if(items.length === 0){
+    el.innerHTML = `
+      <div style="text-align:center; margin-top:30px;">
+        <p style="font-size:13.5px; color:var(--ink-soft); line-height:1.6;">Aucune formation téléchargée pour le moment.<br>Ouvrez une formation et appuyez sur l'icône de téléchargement pour la rendre disponible hors ligne.</p>
+      </div>
+    `;
+    return;
+  }
+  el.innerHTML = `<div class="eyebrow" style="margin-bottom:14px;">${items.length} formation${items.length>1?'s':''} disponible${items.length>1?'s':''} hors ligne</div>` +
+    items.map(f => {
+      const c = CATEGORIES.find(x => x.id === f.cat);
+      return `
+        <div class="form-card">
+          <div class="form-thumb" style="background:${catColor(c.color)}">${ICONS[c.icon] || ICONS.etoile}</div>
+          <div class="form-info" onclick="openDetail(${f.id})">
+            <h4>${f.titre}</h4>
+            <div class="form-meta"><span>${c.nom}</span></div>
+          </div>
+          <button class="icon-btn" style="background:var(--brick-soft); flex-shrink:0;" onclick="toggleDownload(${f.id})" aria-label="Retirer">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="var(--brick)" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+      `;
+    }).join('');
+}
+function openCategory(catId){
+  currentCatId = catId;
+  const c = CATEGORIES.find(x => x.id === catId);
+  const items = FORMATIONS.filter(f => f.cat === catId);
+  document.getElementById('categoryHeader').style.background = `linear-gradient(120deg, ${catColor(c.color)} 0%, var(--ink) 140%)`;
+  document.getElementById('categoryHeader').innerHTML = `
+    <div class="top-row">
+      <button class="icon-btn" onclick="switchTab(lastTab)"><svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="hero-ic">${ICONS[c.icon] || ICONS.etoile}</div>
+    </div>
+    <h1>${c.nom}</h1>
+    <p>${c.desc}</p>
+  `;
+  document.getElementById('categoryList').innerHTML =
+    `<div class="eyebrow" style="margin-bottom:14px;">${items.length} formation${items.length>1?'s':''}</div>` +
+    items.map(formationCardHTML).join('') +
+    (isAdmin ? `<button class="add-formation-btn" onclick="openFormationModal('${catId}')">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke-width="2" stroke-linecap="round"/></svg>
+      Ajouter une formation dans « ${c.nom} »
+    </button>` : '');
+  showScreen('screen-category');
+}
+
+/* ---------------- Ouvrir une formation ---------------- */
+function openDetail(id){
+  const f = FORMATIONS.find(x => x.id === id);
+  const c = CATEGORIES.find(x => x.id === f.cat);
+  document.getElementById('detailHeader').style.background = `linear-gradient(120deg, ${catColor(c.color)} 0%, var(--ink) 140%)`;
+  document.getElementById('detailHeader').innerHTML = `
+    <div class="top-row">
+      <button class="icon-btn" onclick="openCategory('${f.cat}')"><svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="hero-ic">${ICONS[c.icon] || ICONS.etoile}</div>
+      <button class="icon-btn" style="margin-left:auto;" onclick="toggleDownload(${f.id})" aria-label="Téléchargement hors ligne">
+        ${downloadedIds.includes(f.id)
+          ? '<svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+          : '<svg viewBox="0 0 24 24" fill="none"><path d="M12 16V8m0 0l-3.5 3.5M12 8l3.5 3.5" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 20h12a4 4 0 0 0 .5-7.97A5.5 5.5 0 0 0 8 8.5" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/></svg>'}
+      </button>
+    </div>
+    <h1>${f.titre}</h1>
+    <p>${c.nom}${downloadedIds.includes(f.id) ? ' · Disponible hors ligne' : ''}</p>
+  `;
+  document.getElementById('detailStats').innerHTML = `
+    <div class="stat"><span class="num">${f.modules.length}</span><span>Modules</span></div>
+    <div class="stat"><span class="num">${f.duree}</span><span>Durée</span></div>
+    <div class="stat"><span class="num">${f.niveau[0]}</span><span>${f.niveau}</span></div>
+  `;
+  document.getElementById('detailDesc').textContent = f.desc;
+
+  const n = f.modules.length;
+  const doneCount = f.modules.filter(m => m.s === 'done').length;
+  const pct = n > 1 ? (doneCount/(n-1))*100 : (doneCount === n ? 100 : 0);
+  const currentIdx = f.modules.findIndex(m => m.s !== 'done');
+  document.getElementById('detailModules').innerHTML = `
+    <div class="path-line"><i style="height:${Math.min(pct,100)}%"></i></div>
+    ${f.modules.map((m,i) => {
+      const dotClass = m.s === 'done' ? 'done' : (i === currentIdx ? 'current' : 'open');
+      return `
+      <div class="module-row" onclick="openLesson(${f.id},${i})">
+        <div class="module-dot ${dotClass}">${m.s==='done' ? '✓' : (i+1)}</div>
+        <div class="module-body">
+          <h5>${m.t}</h5>
+          <p>${m.d} · ${m.s==='done' ? 'Terminé' : 'Accès libre'}</p>
+        </div>
+      </div>
+    `;}).join('')}
+  `;
+  const cta = document.getElementById('detailCta');
+  if(doneCount === n){
+    cta.textContent = 'Formation terminée — revoir';
+  } else {
+    cta.textContent = f.progression > 0 ? 'Continuer la formation' : (f.gratuit ? "Commencer gratuitement" : "S'inscrire à la formation");
+  }
+  cta.onclick = () => continueFormation(f.id);
+  showScreen('screen-detail');
+}
+
+function continueFormation(fid){
+  const f = FORMATIONS.find(x => x.id === fid);
+  let idx = f.modules.findIndex(m => m.s !== 'done');
+  if(idx === -1) idx = 0;
+  openLesson(fid, idx);
+}
+
+/* ---------------- Leçon (contenu d'un module) ---------------- */
+function lessonParagraphs(f, m){
+  return [
+    `Cette leçon fait partie de la formation « ${f.titre} ». Elle porte sur : ${m.t}.`,
+    `Prenez le temps de lire vos notes ou vos supports de cours sur ce point avant de continuer. Durée indicative : ${m.d}.`,
+    `Une fois que vous maîtrisez ce module, marquez-le comme terminé pour faire progresser votre parcours et débloquer le suivant dans le suivi de votre progression.`
+  ];
+}
+
+function openLesson(fid, idx){
+  const f = FORMATIONS.find(x => x.id === fid);
+  const c = CATEGORIES.find(x => x.id === f.cat);
+  const m = f.modules[idx];
+  document.getElementById('lessonHeader').style.background = `linear-gradient(120deg, ${catColor(c.color)} 0%, var(--ink) 140%)`;
+  document.getElementById('lessonHeader').innerHTML = `
+    <div class="top-row">
+      <button class="icon-btn" onclick="openDetail(${f.id})"><svg viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="hero-ic">${ICONS[c.icon] || ICONS.etoile}</div>
+    </div>
+    <h1>${m.t}</h1>
+    <p>Module ${idx+1} / ${f.modules.length} · ${m.d}</p>
+  `;
+  document.getElementById('lessonBody').innerHTML = `
+    ${m.s === 'done' ? `<div class="lesson-done-badge"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Module déjà terminé</div>` : ''}
+    <div class="lesson-text">${lessonParagraphs(f,m).map(p => `<p>${p}</p>`).join('')}</div>
+  `;
+  document.getElementById('lessonFooter').innerHTML = `
+    <button class="btn-solid" onclick="markModuleDone(${f.id},${idx},${m.s !== 'done'})">
+      ${m.s === 'done' ? 'Marquer comme non terminé' : 'Marquer comme terminé'}
+    </button>
+    <div class="lesson-nav-row">
+      ${idx > 0 ? `<button class="btn-outline" onclick="openLesson(${f.id},${idx-1})">← Précédent</button>` : ''}
+      ${idx < f.modules.length-1 ? `<button class="btn-outline" onclick="openLesson(${f.id},${idx+1})">Suivant →</button>` : ''}
+    </div>
+  `;
+  showScreen('screen-lesson');
+}
+
+function markModuleDone(fid, idx, done){
+  const f = FORMATIONS.find(x => x.id === fid);
+  f.modules[idx].s = done ? 'done' : 'open';
+  const total = f.modules.length;
+  const doneCount = f.modules.filter(m => m.s === 'done').length;
+  f.progression = Math.round((doneCount/total)*100);
+  f.statut = f.progression === 100 ? 'terminee' : (f.progression > 0 ? 'cours' : 'nouveau');
+  openLesson(fid, idx);
+  renderMesFormations();
+}
+
+/* ---------------- Mes formations ---------------- */
+let mesCoursTab = 'toutes';
+function setMesCoursTab(tab){
+  mesCoursTab = tab;
+  document.getElementById('tabToutes').classList.toggle('active', tab==='toutes');
+  document.getElementById('tabEnCours').classList.toggle('active', tab==='cours');
+  document.getElementById('tabTerminees').classList.toggle('active', tab==='terminees');
+  renderMesFormations();
+}
+function renderMesFormations(){
+  const list = FORMATIONS.filter(f => {
+    if(f.type === 'qcm') return false;
+    if(mesCoursTab === 'toutes') return true;
+    if(mesCoursTab === 'cours') return f.statut === 'cours';
+    return f.statut === 'terminee';
+  });
+  const el = document.getElementById('mesFormationsList');
+  if(list.length === 0){
+    const label = mesCoursTab === 'cours' ? 'en cours' : (mesCoursTab === 'terminees' ? 'terminée' : 'disponible');
+    el.innerHTML = `<p style="text-align:center; color:var(--ink-soft); font-size:13.5px; margin-top:40px;">Aucune formation ${label} pour le moment.</p>`;
+    return;
+  }
+  el.innerHTML = list.map(f => {
+    const c = CATEGORIES.find(x => x.id === f.cat);
+    return `
+      <div class="form-card" onclick="openDetail(${f.id})">
+        <div class="form-thumb" style="background:${catColor(c.color)}">${ICONS[c.icon] || ICONS.etoile}</div>
+        <div class="form-info">
+          <h4>${f.titre}</h4>
+          <div class="form-meta" style="margin-bottom:${f.statut==='nouveau' ? '0' : '4px'};"><span>${c.nom}</span><span class="dot"></span><span class="badge-level">${f.niveau}</span></div>
+          ${f.statut === 'cours' ? `
+            <div class="mini-progress"><i style="width:${f.progression}%; background:${catColor(c.color)}"></i></div>
+            <div class="form-meta" style="margin-top:6px;"><span>${f.progression}% terminé</span></div>
+          ` : f.statut === 'terminee' ? `
+            <div class="cert-tag"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 6.6L21 10l-5.5 4.3L17 21l-5-3.6L7 21l1.5-6.7L3 10l6.6-1.4L12 2Z" stroke-width="1.6" stroke-linejoin="round"/></svg>Certificat obtenu</div>
+          ` : ''}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+/* ---------------- Navigation ---------------- */
+let lastTab = 'home';
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+function go(id){ showScreen('screen-' + id); }
+
+function switchTab(tab){
+  lastTab = tab;
+  showScreen('screen-' + tab);
+  document.querySelectorAll('.navbar .nav-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.tab === tab);
+  });
+  if(tab === 'mescours') renderMesFormations();
+}
+
+function setGreeting(){
+  const h = new Date().getHours();
+  const el = document.getElementById('greetTime');
+  el.textContent = h < 12 ? 'Bonjour' : (h < 18 ? 'Bon après-midi' : 'Bonsoir');
+}
+
+/* ---------------- Modal : matières & formations ---------------- */
+let modalMode = null; // 'category' | 'formation'
+let modalEditId = null;
+let modalCatContext = null;
+let modalColor = 'teal';
+let modalIcon = 'etoile';
+
+function closeModal(){
+  document.getElementById('modalBackdrop').classList.remove('open');
+}
+
+function swatchesHTML(){
+  return PALETTE.map(c => `<div class="swatch ${c===modalColor?'selected':''}" style="background:var(--${c})" onclick="modalColor='${c}'; refreshModalPickers();"></div>`).join('');
+}
+function iconPickHTML(){
+  return ICON_LABELS.map(i => `<div class="icon-pick ${i.key===modalIcon?'selected':''}" style="background:var(--${modalColor})" onclick="modalIcon='${i.key}'; refreshModalPickers();" title="${i.label}">${ICONS[i.key]}</div>`).join('');
+}
+function refreshModalPickers(){
+  const sw = document.getElementById('pickSwatches');
+  const ic = document.getElementById('pickIcons');
+  if(sw) sw.innerHTML = swatchesHTML();
+  if(ic) ic.innerHTML = iconPickHTML();
+}
+
+function openCategoryModal(catId){
+  if(!isAdmin){ alert("Cette action est réservée à l'administrateur."); return; }
+  modalMode = 'category';
+  modalEditId = catId;
+  const existing = catId ? CATEGORIES.find(c => c.id === catId) : null;
+  modalColor = existing ? existing.color : PALETTE[CATEGORIES.length % PALETTE.length];
+  modalIcon = existing ? existing.icon : 'etoile';
+
+  document.getElementById('modalSheet').innerHTML = `
+    <h3>${existing ? 'Modifier la matière' : 'Nouvelle matière'}</h3>
+    <div class="modal-label">Nom de la matière</div>
+    <div class="field"><input id="mCatNom" type="text" placeholder="Ex : SVT" value="${existing ? existing.nom : ''}"></div>
+    <div class="modal-label">Description courte</div>
+    <div class="field"><input id="mCatDesc" type="text" placeholder="Ex : Biologie, écologie, génétique" value="${existing ? existing.desc : ''}"></div>
+    <div class="modal-label">Couleur</div>
+    <div class="swatch-row" id="pickSwatches">${swatchesHTML()}</div>
+    <div class="modal-label">Icône</div>
+    <div class="icon-pick-row" id="pickIcons">${iconPickHTML()}</div>
+    <div class="modal-actions">
+      <button class="btn-outline" onclick="closeModal()">Annuler</button>
+      <button class="btn-solid" onclick="saveCategory()">Enregistrer</button>
+    </div>
+    ${existing ? `<button class="link-danger" onclick="deleteCategory('${existing.id}')">Supprimer cette matière</button>` : ''}
+  `;
+  document.getElementById('modalBackdrop').classList.add('open');
+}
+
+function slugify(str){
+  return 'cat_' + str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'').slice(0,12) + '_' + Date.now().toString(36).slice(-4);
+}
+
+function saveCategory(){
+  const nom = document.getElementById('mCatNom').value.trim();
+  const desc = document.getElementById('mCatDesc').value.trim();
+  if(!nom){ alert('Merci de donner un nom à la matière.'); return; }
+  if(modalEditId){
+    const c = CATEGORIES.find(x => x.id === modalEditId);
+    c.nom = nom; c.desc = desc || c.desc; c.color = modalColor; c.icon = modalIcon;
+  } else {
+    CATEGORIES.push({id:slugify(nom), nom, desc: desc || "Nouvelle matière de révision", color:modalColor, icon:modalIcon});
+  }
+  closeModal();
+  renderCategories('homeCategories');
+  renderCategories('allCategories');
+}
+
+function deleteCategory(catId){
+  if(!isAdmin){ alert("Cette action est réservée à l'administrateur."); return; }
+  if(!confirm('Supprimer cette matière et toutes ses formations ?')) return;
+  const idx = CATEGORIES.findIndex(c => c.id === catId);
+  if(idx > -1) CATEGORIES.splice(idx, 1);
+  for(let i = FORMATIONS.length - 1; i >= 0; i--){
+    if(FORMATIONS[i].cat === catId) FORMATIONS.splice(i, 1);
+  }
+  closeModal();
+  renderCategories('homeCategories');
+  renderCategories('allCategories');
+  renderMesFormations();
+  switchTab('formations');
+}
+
+function openFormationModal(catId){
+  if(!isAdmin){ alert("Cette action est réservée à l'administrateur."); return; }
+  modalMode = 'formation';
+  modalCatContext = catId;
+  const c = CATEGORIES.find(x => x.id === catId);
+  document.getElementById('modalSheet').innerHTML = `
+    <h3>Nouvelle formation — ${c.nom}</h3>
+    <div class="modal-label">Titre</div>
+    <div class="field"><input id="mFTitre" type="text" placeholder="Ex : Les fractions et pourcentages"></div>
+    <div class="modal-label">Durée estimée</div>
+    <div class="field"><input id="mFDuree" type="text" placeholder="Ex : 5h"></div>
+    <div class="modal-label">Niveau</div>
+    <select class="field-select" id="mFNiveau">
+      <option>Débutant</option><option>Intermédiaire</option><option>Avancé</option><option>Tous niveaux</option>
+    </select>
+    <div class="modal-label">Description</div>
+    <textarea class="field-textarea" id="mFDesc" placeholder="Décrivez brièvement le contenu de la formation"></textarea>
+    <div class="checkbox-row"><input type="checkbox" id="mFGratuit"><label for="mFGratuit">Formation gratuite</label></div>
+    <div class="modal-actions">
+      <button class="btn-outline" onclick="closeModal()">Annuler</button>
+      <button class="btn-solid" onclick="saveFormation()">Enregistrer</button>
+    </div>
+  `;
+  document.getElementById('modalBackdrop').classList.add('open');
+}
+
+function saveFormation(){
+  const titre = document.getElementById('mFTitre').value.trim();
+  if(!titre){ alert('Merci de donner un titre à la formation.'); return; }
+  const nextId = FORMATIONS.length ? Math.max(...FORMATIONS.map(f => f.id)) + 1 : 1;
+  FORMATIONS.push({
+    id: nextId,
+    cat: modalCatContext,
+    titre,
+    duree: document.getElementById('mFDuree').value.trim() || '—',
+    niveau: document.getElementById('mFNiveau').value,
+    gratuit: document.getElementById('mFGratuit').checked,
+    progression: 0,
+    statut: 'nouveau',
+    desc: document.getElementById('mFDesc').value.trim() || "Description à compléter.",
+    modules: [{t:'Introduction', d:'20 min', s:'open'}]
+  });
+  closeModal();
+  openCategory(modalCatContext);
+  renderMesFormations();
+}
+
+/* ---------------- Ajout d'une question QCM (admin) ---------------- */
+function openAddQuestionModal(formationId){
+  if(!isAdmin){ alert("Cette action est réservée à l'administrateur."); return; }
+  modalMode = 'question';
+  modalCatContext = formationId;
+  const f = FORMATIONS.find(x => x.id === formationId);
+  document.getElementById('modalSheet').innerHTML = `
+    <h3>Ajouter une question — ${f.titre}</h3>
+    <div class="modal-label">Niveau de difficulté</div>
+    <select class="field-select" id="mQNiveau">
+      <option value="facile">Facile</option>
+      <option value="moyen">Moyen</option>
+      <option value="difficile">Difficile</option>
+    </select>
+    <div class="modal-label">Question</div>
+    <div class="field"><input id="mQTexte" type="text" placeholder="Ex : Quelle est la capitale du Burkina Faso ?"></div>
+    <div class="modal-label">Réponses possibles (cochez la bonne)</div>
+    ${[0,1,2,3].map(i => `
+      <div class="field">
+        <input type="radio" name="mQCorrect" value="${i}" ${i===0?'checked':''} style="width:16px;height:16px;accent-color:var(--teal);">
+        <input id="mQOpt${i}" type="text" placeholder="Réponse ${i+1}">
+      </div>
+    `).join('')}
+    <div class="modal-label">Explication de la bonne réponse</div>
+    <textarea class="field-textarea" id="mQExpl" placeholder="Expliquez pourquoi cette réponse est correcte"></textarea>
+    <div class="modal-actions">
+      <button class="btn-outline" onclick="closeModal()">Annuler</button>
+      <button class="btn-solid" onclick="saveQuestion()">Enregistrer</button>
+    </div>
+  `;
+  document.getElementById('modalBackdrop').classList.add('open');
+}
+
+function saveQuestion(){
+  const texte = document.getElementById('mQTexte').value.trim();
+  const options = [0,1,2,3].map(i => document.getElementById('mQOpt'+i).value.trim());
+  if(!texte || options.some(o => !o)){ alert('Merci de remplir la question et les 4 réponses.'); return; }
+  const correctRadio = document.querySelector('input[name="mQCorrect"]:checked');
+  const correct = correctRadio ? parseInt(correctRadio.value, 10) : 0;
+  const explication = document.getElementById('mQExpl').value.trim() || "Explication à compléter.";
+  const niveau = document.getElementById('mQNiveau').value;
+  const f = FORMATIONS.find(x => x.id === modalCatContext);
+  f.banque[niveau].push({ q: texte, options, correct, explication });
+  closeModal();
+  openQcm(f.id);
+}
+
+/* ---------------- Initialisation ---------------- */
+renderCategories('homeCategories');
+renderCategories('allCategories');
+renderMesFormations();
+setGreeting();
+document.getElementById('adminListItem').innerHTML = adminListItemInner();
+updateOfflineBadge();
+</script>
+</body>
+</html>
